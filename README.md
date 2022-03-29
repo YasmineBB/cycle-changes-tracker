@@ -40,6 +40,8 @@ Below are some scenarios a user may find themselves in which would using the Cyc
 
 ## Technologies Used  
 
+
+
 ## Testing  
 
 ## Bugs  
@@ -51,4 +53,6 @@ Below are some scenarios a user may find themselves in which would using the Cyc
 ### Heroku  
 
 ## Credits  
+
+- https://www.101computing.net/python-typing-text-effect/
 
