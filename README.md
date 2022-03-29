@@ -1,31 +1,54 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Cycle Changes Tracker  
 
-Welcome YasmineBB,
+## Live Site  
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## Table of Contents  
 
-## Reminders
+## Introduction  
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+Cycle Changes Tracker is an application developed to help women track changes to their cycle upon changing their method of birth control. 
 
-## Creating the Heroku app
+## User Experience  
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+### Target Audience  
 
-1. `heroku/python`
-2. `heroku/nodejs`
+The target audience for this app are:
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+- Women who have changed their method of birth control as a means of finding the best option for them in terms of pain management.
+  
+- Women who are starting birth control and want to keep track of their symptoms to see if the method is suited to them or whether they need to look at other options.  
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+Once the change has been made, it is important to monitor and track changes in their symptoms during their cycle following the change in order to feedback to their GP or Gynaecologist, analyse the data and figure out the next point of action.
 
-Connect your GitHub repository and deploy as normal.
+## User Stories  
 
-## Constraints
+Below are some scenarios a user may find themselves in which would using the Cycle Changes Tracker may prove helpful.  
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+- *I am changing from a Copper IUD to a Hormonal IUD due to experiencing severe pain during my menstrual cycle and want to track any changes in my symptoms to feedback to my Gynaecologist.*  
+  
+- *I am experimenting stopping my birth control for a period of time as suggested by my Gynaecologist. She has advised me to monitor any changes to my menstrual flow and pain experienced to feed back to her after 3 months.*  
+  
+- *I am starting birth control and want to keep track of my symptoms so, if required to change in the future, I can find the method that works best for me.*  
 
------
-Happy coding!
+## Logic  
+
+## Features  
+
+### Current Features  
+
+### Future Features to Implement  
+
+## Technologies Used  
+
+## Testing  
+
+## Bugs  
+
+## Development  
+
+## Deployment  
+
+### Heroku  
+
+## Credits  
+
