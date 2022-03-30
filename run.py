@@ -66,20 +66,38 @@ def get_user_name():
     time.sleep(1)
     typingPrint(f'Lovely to meet you, ' + Fore.LIGHTMAGENTA_EX + f'{name}!\n' + Fore.RESET)
 
-def cycle_phase():
-  """
-  User can state whether or not they are on their period.
-  Will be provided with relevant questions to answer.
-  """
+    cycle_phase()
 
-  while True:
+def cycle_phase():
+
+    """
+    User can state whether or not they are on their period.
+    Will be provided with relevant questions to answer.
+    """
+
+    while True:
         option = input('Are you on your period? Y/N\n')
         if option == 'y' or option == 'Y':
           typingPrint("We'll ask you some questions about the symptoms you're experiencing today...\n")
+          on_period()
         elif option == 'n' or option == 'N':
           typingPrint("We'll ask you some questions about any symptoms you may be experiencing today\n")
         else:
           typingPrint(f'{option} is not a valid input. Please enter either Y or N...\n')
+
+
+def on_period():
+  """
+  User will be asked questions related to the beginning of their cycle.
+  """
+  typingPrint('hello\n')
+  exit()
+
+def exit():
+  print('Thank you for logging your symptoms today. Have a great day and see you tommorow!')
+  start()
+
+
 
 # def validate_name_input(values):
 #     """
@@ -102,10 +120,15 @@ def cycle_phase():
 #     """
 #     get_user_name()
 
-print(Fore.LIGHTMAGENTA_EX + '     -------------------------------')
-print('  -------------------------------------')
-print('--------' + Fore.RED + ' Cycle Changes Tracker ' + Fore.LIGHTMAGENTA_EX + '----------')
-print('  -------------------------------------')
-print('     -------------------------------\n' + Fore.RESET)
+def start():
+
+  print(Fore.LIGHTMAGENTA_EX + '     -------------------------------')
+  print('  -------------------------------------')
+  print('--------' + Fore.RED + ' Cycle Changes Tracker ' + Fore.LIGHTMAGENTA_EX + '----------')
+  print('  -------------------------------------')
+  print('     -------------------------------\n' + Fore.RESET)
+
+start()
 get_user_name()
-cycle_phase()
+on_period()
+exit()
