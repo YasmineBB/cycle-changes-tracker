@@ -2,11 +2,16 @@
 
 ## Live Site  
 
+View the app [here](https://cycle-changes-tracker.herokuapp.com/).
+
+
 ## Table of Contents  
 
 ## Introduction  
 
-Cycle Changes Tracker is an application developed to help women track changes to their cycle upon changing their method of birth control. 
+Cycle Changes Tracker is a Command Line Interface application developed to help women track changes to their cycle upon changing their method of birth control.  
+
+This application has been developed with Python.
 
 ## User Experience  
 
@@ -37,6 +42,14 @@ Below are some scenarios a user may find themselves in which would using the Cyc
 ### Current Features  
 
 ### Future Features to Implement  
+
+There are many features that would really boost the overall functionality of this app and make it more in depth in assisting with the users concerns. I have listed several which I would, and plan to, implement with more time.
+
+**Mood Tracker**
+
+Alongside tracking pain and flow level, another feature to implement would be a mood tracker to track the users mood symptoms.
+
+
 
 ## Technologies Used  
 

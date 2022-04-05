@@ -19,20 +19,21 @@ SHEET = GSPREAD_CLIENT.open('cycle_changes_tracker')
 
 """ Add sheets from worksheet """
 
-# symptoms = SHEET.worksheet('symptoms')
+user = SHEET.worksheet('user')
 
-# data = symptoms.get_all_values()
+data = user.get_all_values()
 
-# print(data)
+print(data)
 
 
-
-"""
-Functions to add typewriter effect.
-Taken from www.101computing.net/python-typing-text-effect/
-"""
 
 def typingPrint(text):
+
+  """
+  Functions to add typewriter effect.
+  Taken from www.101computing.net/python-typing-text-effect/
+  """
+  
   for character in text:
     sys.stdout.write(character)
     sys.stdout.flush()
@@ -55,16 +56,39 @@ def get_user_name():
     """
     typingPrint('Hello...\n')
     time.sleep(1)
-    typingPrint('Welcome to ' + Fore.LIGHTMAGENTA_EX + 'Cycle Changes Tracker!\n' + Fore.RESET)
+    typingPrint('Welcome to ' + Fore.LIGHTMAGENTA_EX + 'Cycle Changes Tracker' + Fore.RESET + '!\n')
     time.sleep(1)
-    typingPrint('We are here to provide you with that extra support with tracking any changes to your symptoms after changing your method of birth control.\n')
-    time.sleep(1)
+    # typingPrint('So...\n')
+    # time.sleep(1)
+    # typingPrint('We know the journey into finding what works for you and your'
+    # ' body can be tough...it can be long...and frustrating...\n')
+    # time.sleep(1)
+    # typingPrint("So we are here to support you all the way on your journey by"
+    # " helping you track changes to your symptoms.\n")
+    # time.sleep(1)
+    # typingPrint("We're here, to help you!\n")
+    # time.sleep(1)
 
-    typingPrint('Before we start, lets get acquainted... \n')
-    time.sleep(1)
-    name = typingInput('Please enter your name: \n')
-    time.sleep(1)
-    typingPrint(f'Lovely to meet you, ' + Fore.LIGHTMAGENTA_EX + f'{name}!\n' + Fore.RESET)
+    # typingPrint('Before we start, lets get acquainted...\n')
+    # time.sleep(1)
+
+    # global name
+
+    # name = typingInput('Please enter your name:\n')
+    # time.sleep(1)
+
+    # typingPrint(f'Lovely to meet you, ' + Fore.LIGHTMAGENTA_EX + f'{name}!\n' + Fore.RESET)
+    # return name
+
+
+def update_name(entered_name):
+    """
+    Update user_name worksheet
+    """
+
+    user_worksheet = SHEET.worksheet('user')
+    user_worksheet.append_row([entered_name])
+    typingPrint('Name has been saved!\n')
 
     cycle_phase()
 
@@ -75,23 +99,75 @@ def cycle_phase():
     Will be provided with relevant questions to answer.
     """
 
+    typingPrint('Lets begin!\n')
+
     while True:
-        option = input('Are you on your period? Y/N\n')
+        option = typingInput('Are you on your period today? Y/N\n')
         if option == 'y' or option == 'Y':
-          typingPrint("We'll ask you some questions about the symptoms you're experiencing today...\n")
-          on_period()
+          typingPrint("We'll ask you some questions about the symptoms"
+          " you're experiencing today...\n")
+          return on_period()
         elif option == 'n' or option == 'N':
-          typingPrint("We'll ask you some questions about any symptoms you may be experiencing today\n")
+          typingPrint("We'll ask you some questions about any symptoms you may"
+          " be experiencing today\n")
         else:
-          typingPrint(f'{option} is not a valid input. Please enter either Y or N...\n')
+          typingPrint(f'{option} is not a valid input! Please enter either Y or N...\n')
+
+        return False
 
 
 def on_period():
-  """
-  User will be asked questions related to the beginning of their cycle.
-  """
-  typingPrint('hello\n')
-  exit()
+    """
+    User will be asked questions related to the beginning of their cycle.
+    Modified to check user input is integer, printing ValueError if not, using https://stackoverflow.com/questions/42338468/how-to-check-if-number-is-string-or-integer-in-python-using-if-else
+    """
+
+    global pain_exp_before
+
+    pain_scale = typingInput('Where would you place your level of pain on a scale of 0 - 10? \n')
+
+    try:
+        integer = int(pain_scale)
+
+        if integer > 0:
+            typingPrint("Sorry to here you're experiencing pain today. It's great "
+            "that you're logging symptoms, lets hope to change that.\n")
+            return (pain_exp_before)
+        elif integer == 0:
+            typingPrint('No pain today? thats great! \n')
+
+    except ValueError:
+        typingPrint(f'{pain_scale} is not a valid input. Please choose a number from 0 - 10.\n')
+
+    
+    pain_exp_before = typingInput('Have you experienced this level of pain before? Y/N \n')
+
+    while True:
+        if pain_exp_before == 'y' or pain_exp_before == 'Y' or pain_exp_before == 'n' or pain_exp_before == 'N':
+            typingPrint('Okay. This change has been logged.')
+            return flow_level
+        else:
+          return
+
+
+    # while True:
+    #     pain_scale = int(typingInput('Where would you place your level of pain on a scale of 0 - 10?\n'))
+    #     if pain_scale.isnumeric() and pain_scale > 0:
+    #         typingPrint("Sorry to here you're experiencing pain today. Its great "
+    #         "that you're logging symptoms, lets hope to change that.\n")
+    #     elif pain_scale.isnumeric() and (pain_scale) == 0:
+    #         typingPrint('No pain today? thats great!\n')
+    #     else:
+    #         typingPrint(f'{pain_scale} is not a valid input. Please choose a number from 0 - 10.\n')
+        # else:
+        #     return exit()
+
+
+def any_other_phases():
+
+    """
+    User will be asked questions regarding symptoms experienced at other phases in their cycle.
+    """
 
 def exit():
   print('Thank you for logging your symptoms today. Have a great day and see you tommorow!')
@@ -122,13 +198,18 @@ def exit():
 
 def start():
 
-  print(Fore.LIGHTMAGENTA_EX + '     -------------------------------')
-  print('  -------------------------------------')
-  print('--------' + Fore.RED + ' Cycle Changes Tracker ' + Fore.LIGHTMAGENTA_EX + '----------')
-  print('  -------------------------------------')
-  print('     -------------------------------\n' + Fore.RESET)
+    """
+    Title that shows when program is run.
+    """
+
+    print(Fore.LIGHTMAGENTA_EX + '     -------------------------------')
+    print('  -------------------------------------')
+    print('--------' + Fore.RED + ' Cycle Changes Tracker ' + Fore.LIGHTMAGENTA_EX + '----------')
+    print('  -------------------------------------')
+    print('     -------------------------------\n' + Fore.RESET)
 
 start()
-get_user_name()
+name = get_user_name()
+update_name(name)
 on_period()
 exit()
