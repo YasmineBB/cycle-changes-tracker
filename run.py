@@ -57,20 +57,22 @@ def get_user_name():
     typingPrint("                                   Hello...                              \n\n")
     time.sleep(1)
     typingPrint('                      Welcome to ' + Fore.LIGHTMAGENTA_EX + 'Cycle Changes Tracker' + Fore.RESET + '!               \n\n')
-    # time.sleep(1)
-    # typingPrint('So...\n')
-    # time.sleep(1)
-    # typingPrint('We know the journey into finding what works for you and your'
-    # ' body can be tough...it can be long...and frustrating...\n')
-    # time.sleep(1)
-    # typingPrint("So we are here to support you all the way on your journey by"
-    # " helping you track changes to your symptoms.\n")
-    # time.sleep(1)
-    # typingPrint("We're here, to help you!\n\n")
-    # time.sleep(1)
+    time.sleep(1)
+    typingPrint('So...\n')
+    time.sleep(1)
+    typingPrint('We know the journey into finding what works for you and your'
+    ' body can be tough...\n\n')
+    time.sleep(1)
+    typingPrint('It can be long... and frustrating...\n\n')
+    time.sleep(1)
+    typingPrint("So we are here to support you all the way on your journey by"
+    " helping you track changes to your symptoms.\n\n")
+    time.sleep(1)
+    typingPrint("We're here, to help you!\n\n")
+    time.sleep(1)
 
-    # typingPrint('Before we start, lets get acquainted...\n\n')
-    # time.sleep(1)
+    typingPrint('Before we start, lets get acquainted...\n\n')
+    time.sleep(1)
 
     global name
 
@@ -90,7 +92,7 @@ def update_name(entered_name):
     user_worksheet.append_row([entered_name])
     # typingPrint('Name has been saved!\n\n')
 
-    cycle_phase()
+    menu()
 
 def menu():
 
@@ -107,15 +109,41 @@ def menu():
     print('               ------------     ------------     -------------')
     print('                 --------         --------         --------')
     print('                   ----             ----             ----\n' + Fore.RESET)
+    print('     ')
+    print('     ')
 
 
     
     # typingPrint('1. Login\n\n')
     # typingPrint('2. Register\n\n')
     # typingPrint('3. Continue as Guest\n\n')
-    typingInput('                Please choose an option from the menu above. \n' + Fore.LIGHTMAGENTA_EX + '               (1) ' + Fore.WHITE + 'Login, ' + Fore.LIGHTMAGENTA_EX + '(2) ' + Fore.WHITE + 'Register, ' + Fore.LIGHTMAGENTA_EX + '(3) ' + Fore.WHITE + 'Continue as Guest\n' + Fore.RESET)
-
+    while True:
+        menu_option = typingInput('                Please choose an option from the menu above. \n' + Fore.LIGHTMAGENTA_EX + '               (1) ' + Fore.WHITE + 'Login, ' + Fore.LIGHTMAGENTA_EX + '(2) ' + Fore.WHITE + 'Register, ' + Fore.LIGHTMAGENTA_EX + '(3) ' + Fore.WHITE + 'Continue as Guest\n\n' + Fore.RESET)
+        print('     ')
+        print('     ')
+        if menu_option == '1':
+          typingPrint('Taking you to the Log In page...\n\n')
+          return login()
+          break
+        elif menu_option == '2':
+          typingPrint('Taking you to the Register page...\n\n')
+          return register()
+          break
+        elif menu_option == '3':
+          typingPrint("Great, we'll get started. You'll have the option to register at the end if you wish!\n\n")
+          return cycle_phase()
+          break
+        else:
+          typingPrint(f'{menu_option} is not a valid input! Please choose option 1, 2 or 3...\n\n')
+      
     # cycle_phase()
+
+def login():
+    """
+    Function which takes user to login screen.
+    """
+
+    print('Login') 
 
 def cycle_phase():
 
@@ -124,7 +152,7 @@ def cycle_phase():
     Will be provided with relevant questions to answer.
     """
 
-    typingPrint('Lets begin!\n\n')
+    typingPrint("We'll ask you a few questions related to your cycle!\n\n")
 
     while True:
         option = typingInput(Fore.LIGHTMAGENTA_EX + 'Are you on your period today? Y/N\n\n' + Fore.RESET)
@@ -139,8 +167,9 @@ def cycle_phase():
           return exit()
         else:
           typingPrint(f'{option} is not a valid input! Please enter either Y or N...\n\n')
+          continue
 
-        return False
+        
 
 # global pain_exp_before 
 
@@ -267,9 +296,9 @@ def any_other_phases():
 
 def exit():
 
-  typingPrint("Thank you for logging your symptoms today, "  + Fore.LIGHTMAGENTA_EX + f"{name} " + Fore.WHITE + "Have a great day and see you tommorow!\n")
+  typingPrint("Thank you for logging your symptoms today, "  + Fore.LIGHTMAGENTA_EX + f"{name}." + Fore.WHITE + " Have a great day and see you tommorow!\n\n")
   time.sleep(1)
-  start()
+  menu()
 
 
 
