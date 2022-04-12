@@ -41,23 +41,36 @@ Below are some scenarios a user may find themselves in which would using the Cyc
 
 ### Current Features  
 
+#### Introduction  
+
+![title](./assets/README%20screenshots/Title.png)
+
+At the start up point once the program is run, a title appears followed by an introduction to the application which, at the end, prompts the user to enter their name and welcomes them.
+
+![Welcome](./assets/README%20screenshots/Welcome%20message.png)
+
+#### Menu  
+
+![Menu](./assets/README%20screenshots/Menu.png)
+
+#### 
+
 ### Future Features to Implement  
 
 There are many features that would really boost the overall functionality of this app and make it more in depth in assisting with the users concerns. I have listed several which I would, and plan to, implement with more time.
 
-**Mood Tracker**
+#### Mood Tracker  
 
 Alongside tracking pain and flow level, another feature to implement would be a mood tracker to track the users mood symptoms.
 
-
-
 ## Technologies Used  
-
-
 
 ## Testing  
 
 ## Bugs  
+
+- **Colorama light colours not showing on deployed site**  
+  - To add some visuals to the questions asking the user to choose their pain and flow level on a scale, I initially used four colours
 
 ## Development  
 
