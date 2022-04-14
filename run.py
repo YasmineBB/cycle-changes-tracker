@@ -4,6 +4,7 @@ from colorama import Fore, Back, Style
 import time
 import os
 import sys
+from werkzeug.security import generate_password_hash, check_password_hash
 # from datetime import date
 
 SCOPE = [
@@ -80,7 +81,7 @@ def get_user_name():
     print('\n')
     typingPrint(Fore.WHITE + '                         Lovely to meet you, ' + Fore.LIGHTMAGENTA_EX + f'{name}!\n\n' + Fore.RESET)
     time.sleep(1)
-    print('\n\n\n\n\n')
+    print('\n\n\n')
     return name
 
 
@@ -115,7 +116,9 @@ def menu():
     print('     ')
 
     while True:
-        menu_option = typingInput('Please choose option (1) to Login, (2) to Register or (3) to Continue as Guest. \n\n')
+        menu_option = typingInput('Please choose option (1) to Login,' +
+                                  '(2) to Register or (3) to Continue' +
+                                  ' as Guest. \n\n')
         # print('\n\n\n\n')
         if menu_option == '1':
             print('\n')
@@ -138,12 +141,47 @@ def menu():
 
     # cycle_phase()
 
-# def login():
-#     """
-#     Function which takes user to login screen.
-#     """
+def login():
+    """
+    Function which takes user to login.
+    """
+    username = input('Enter your username: ')
+    user_worksheet = SHEET.worksheet('user_details')
+    match = user_worksheet.find(username)
+    password = user_worksheet.cell(match.row, 2)
+    password_input = input('Enter your password: ')
+    
+    if check_password_hash(password.value, password_input):
+        print('True')
+    else:
+        print('False')
+    
 
-#     print('Login')
+    print(password.value)
+
+def register():
+    """
+    Function which takes user to register.
+    """
+    
+    user = {}
+    user['username'] = input('Enter your username: ')
+    user['password'] = generate_password_hash(input('Please enter a password: '))
+    user['email'] = input('Please enter your email: ')
+    print(user)
+
+    register_user(user)
+    
+    
+    
+    
+    
+def register_user(user):
+    
+    user_worksheet = SHEET.worksheet('user_details')
+    user_worksheet.append_row([x for x in user.values()])
+    
+    menu()
 
 
 def cycle_phase():
@@ -252,6 +290,27 @@ def pain_exp():
     #     else:
     #         # print(f'{flow_level} is not a valid option!\n')
     #         continue
+    
+    # flow_level = None
+    # while flow_level is None:
+    #     input_value = typingInput(Fore.LIGHTMAGENTA_EX + 'How would you describe your flow today on a scale of 1 - 5?\n'
+    #                               + Fore.LIGHTWHITE_EX + '(0) None, ' + Fore.WHITE +  '(1) Very Light, ' + Fore.RED + '(2) Light, (3) Medium, ' + Fore.LIGHTRED_EX + '(4) Heavy, (5) Very Heavy?\n\n' + Fore.RESET)
+    #     try:
+    #     # try and convert the string input to a number
+    #         flow_level = int(input_value)
+    #     except ValueError:
+    #     # tell the user off
+    #         print("{flow_level} is not a number, please enter a number only".format(input=input_value))
+    # if flow_level >= 0 and flow_level <= 5:
+    #     print("Okay. We'll log this for you.\n\n")
+    #     break
+    # elif flow_level > 5:
+    #     print(f'{flow_level} is not a valid option!\n\n')
+    #     continue
+    # else:
+    #     print(f'{flow_level} is not a valid option!\n\n')
+    #     continue
+    
     while True:
         flow_level = typingInput(Fore.LIGHTMAGENTA_EX + 'How would you describe your flow today on a scale of 1 - 5? \n'
         + Fore.LIGHTWHITE_EX + '(0) None, ' + Fore.WHITE +  '(1) Very Light, ' + Fore.RED + '(2) Light, (3) Medium, ' + Fore.LIGHTRED_EX + '(4) Heavy, (5) Very Heavy?\n\n' + Fore.RESET)
@@ -259,10 +318,13 @@ def pain_exp():
             print('     ')
             typingPrint("Okay. We'll log this for you.\n\n")
             break
-        elif flow_level.isdigit() == False and int(flow_level) >5:
-            print(f'{flow_level} is not a valid input. Please input a number between 0 and 5.\n')
+        elif flow_level.isdigit() and int(flow_level) >5:
+            print(f'{flow_level} is not a valid option!\n\n')
             continue
         else:
+            print(f'{flow_level} is not a valid option!\n\n')
+            continue
+        
         # elif flow_level.isalpha() == True:
         #     print(f'{flow_level} is not a valid input. Please input a number between 0 and 5.\n')
             continue
@@ -272,7 +334,9 @@ def pain_exp():
 # def flow_exp():
 
     while True:
-        flow_exp_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you experienced this level of flow before? Y/N\n\n' + Fore.RESET)
+        flow_exp_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you' +
+                                      'experienced this level of flow' +
+                                      'before? Y/N\n\n' + Fore.RESET)
         if flow_exp_before == 'y' or flow_exp_before == 'Y' or flow_exp_before == 'n' or flow_exp_before == 'N':
             print('     ')
             typingPrint("Okay. We'll log this for you.\n\n")
@@ -349,7 +413,7 @@ def any_other_phases():
             break
         else:
             print('/n')
-            typingPrint(f'{spotting} is not a valid option!')
+            typingPrint(f'{spotting} is not a valid option!\n\n')
             continue
 
     any_other_phases['Spotting'] = spotting
@@ -361,7 +425,7 @@ def any_other_phases():
             typingPrint("Okay. We'll log this for you.\n\n")
             break
         else:
-            typingPrint(f'{spotting_exp_before} is not a valid option!')
+            typingPrint(f'{spotting_exp_before} is not a valid option!\n\n')
             continue
       
     any_other_phases['Spotting Exp Before'] = spotting_exp_before
