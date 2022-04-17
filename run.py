@@ -63,13 +63,12 @@ def get_user_name():
     # typingPrint('So...\n')
     # time.sleep(1)
     typingPrint('We know the journey into finding what works for you and' +
-                ' your body can be tough...\n\n')
+                ' your body can be complicated...\n\n')
     # time.sleep(1)
     # typingPrint('It can be long... and frustrating...\n\n')
     # time.sleep(1)
-    typingPrint("So we are here to support you all the way on your journey" +
-                " by helping you track changes\n\n" 
-                    "to your symptoms.\n\n")
+    typingPrint("So we are here to support you all the way on your journey by helping you track" +
+                " changes to your symptoms.\n\n")
     # time.sleep(1)
     # typingPrint("We're here, to help you!\n\n")
     # time.sleep(1)
@@ -121,8 +120,8 @@ def menu():
     print('     ')
 
     while True:
-        menu_option = typingInput('Please enter (1) to Login,' +
-                                  ' (2) to Register or (3) to Continue' +
+        menu_option = typingInput('Please enter ' + Fore.LIGHTMAGENTA_EX + '(1) ' + Fore.WHITE + 'to Login,' + Fore.LIGHTMAGENTA_EX +
+                                  ' (2) ' + Fore.WHITE + 'to Register or ' + Fore.LIGHTMAGENTA_EX + '(3) ' + Fore.WHITE + 'to Continue' +
                                   ' as Guest. \n\n')
         # print('\n\n\n\n')
         if menu_option == '1':
@@ -153,57 +152,45 @@ def login():
     Function which takes user to login.
     """
     
-    username = input('Please enter your username: \n\n')
-    password_input = input('Please enter your password: \n\n')
+    username = input(Fore.LIGHTMAGENTA_EX + 'Please enter your username: \n\n' + Fore.RESET)
+    password_input = input(Fore.LIGHTMAGENTA_EX + 'Please enter your password: \n\n' + Fore.RESET)
     user_worksheet = SHEET.worksheet('user_details')
-    match = user_worksheet.find(username)
-    password = user_worksheet.cell(match.row, 2)
     
-    # if check_password_hash(password.value, password_input):
-    #     print('True')
-    #     return cycle_phase()
-    # else:
-    #     print('False')
-    #     return login()
-    
-    
-    if check_password_hash(password.value, password_input):
-        print(f'Lovely to meet you, {username}! You are now logged in!\n')
-        while True:
-            proceed = input('Select (L) to proceed to logging your symptoms or (M) to go to the menu: \n\n')
-            if proceed == 'l' or proceed == 'L':
-                print("Great, we'll get started!\n\n")
-                return cycle_phase()
-                break
-            elif proceed == 'm' or proceed == 'M':
-                print('Returning to Main Menu...\n\n')
-                return login_menu()
-                break
-            else:
-                print(f'{proceed} is not a valid option!')
-                continue
+    if user_worksheet.find(username):    
+        match = user_worksheet.find(username)
+        password = user_worksheet.cell(match.row, 2)
     else:
-        print('False')
+        print('Username is not valid. please try again...\n\n')
+        return login()
+    
+    # return username
+
+    while True:
         
-    # while True:
-        
-    #     if check_password_hash(password.value, password_input):
-    #         print(f'Lovely to meet you, {username}! You are now logged in!\n')
-            # while True:
-            #     proceed = input('Select (L) to proceed to logging your symptoms or (M) to return to the main menu: \n\n')
-            #     if proceed == 'l' or proceed == 'L':
-            #         print("Great, we'll get started!\n\n")
-            #         return cycle_phase()
-            #         break
-            #     elif proceed == 'm' or proceed == 'M':
-            #         print('Returning to Main Menu...\n\n')
-            #         return menu()
-            #         break
-            #     else:
-            #         print('ummm')
-    #     else:
-    #         print('False\n')
-    #         continue
+        if check_password_hash(password.value, password_input):
+            print(' ')
+            print('Welcome back, ' + Fore.LIGHTMAGENTA_EX + f'{username}' + Fore.RESET + '! You are now logged in!\n')
+            while True:
+                proceed = input('Please select (L) to proceed to logging your symptoms, (M) to go to the menu or (E) to log out: \n\n')
+                if proceed == 'l' or proceed == 'L':
+                    print("Great, we'll get started!\n\n")
+                    return cycle_phase()
+                    break
+                elif proceed == 'm' or proceed == 'M':
+                    print('Returning to Main Menu...\n\n')
+                    return login_menu()
+                    break
+                elif proceed == 'e' or proceed == 'E':
+                    print(' ')
+                    print(f'See you next time, {username}!\n\n')
+                    print('Logging out...')
+                    return menu()
+                else:
+                    print(f'{proceed} is not a valid option!')
+                    continue
+        else:
+            print('Password is incorrect. Please try again...')
+            return login()
     
 
     # print(password.value)
@@ -218,9 +205,12 @@ def register():
     user['password'] = generate_password_hash(input('Please enter a password: \n'))
     user['email'] = input('Please enter your email address: \n')
     # print(user)
+    
     username = user['username']
+    return username
     # print(username)
     register_user(user, username)
+    return exit(username)
 
 
 def register_user(user, username):
@@ -247,7 +237,7 @@ def register_user(user, username):
 
 def login_menu():
     """
-    Menu show once user has logged in.
+    Menu shown once user has logged in.
     """
 
     print(Fore.LIGHTMAGENTA_EX + '                                    ----')
@@ -280,13 +270,13 @@ def login_menu():
             typingPrint('Taking you to Log Your Symptoms...\n\n')
             return cycle_phase()
             break
-        elif menu_option == '3':
+        elif login_menu_option == '3':
             print('\n')
-            typingPrint("Hope to see you back soon!\n\n")
+            typingPrint(f"Hope to see you back soon {username}!\n\n")
             return exit()
             break
         else:
-            print(f'{menu_option} is not a valid option!\n\n')
+            print(f'{login_menu_option} is not a valid option!\n\n')
             continue
 
 
@@ -462,7 +452,7 @@ def update_menstrual_phase(menstrual_phase):
     new_worksheet = SHEET.worksheet('menstrual_phase')
     new_worksheet.append_row([x for x in menstrual_phase.values()])
     typingPrint('Great! Your symptoms have been updated!\n\n')
-    exit()
+    exit(username)
 
 
 def any_other_phases():
@@ -544,7 +534,7 @@ def update_any_other_phases(any_other_phases):
     new_worksheet = SHEET.worksheet('other_phase')
     new_worksheet.append_row([x for x in any_other_phases.values()])
     typingPrint('Great! Your symptoms have been updated!\n\n')
-    exit()
+    exit(username)
 
 
 def get_data_other_phase():
@@ -574,7 +564,7 @@ def start():
     print('                       -------------------------------\n' +
           Fore.RESET)
     
-def exit():
+def exit(username):
   
     """
     Exit function to end the application and thank the user for logging \
