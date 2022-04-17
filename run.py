@@ -19,7 +19,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('cycle_changes_tracker')
 OTHER_PHASE_DATA = SHEET.worksheet('other_phase')
 
-""" Add sheets from worksheet """
+# """ Add sheets from worksheet """
 # menstrual_phase = SHEET.worksheet('menstrual_phase')
 # data = menstrual_phase.get_all_values()
 # print(data)
@@ -27,7 +27,7 @@ OTHER_PHASE_DATA = SHEET.worksheet('other_phase')
 
 def typingPrint(text):
     """
-    Functions to add typewriter effect.
+    Functions to add typing effect to print statements.
     Taken from www.101computing.net/python-typing-text-effect/
     """
 
@@ -38,6 +38,10 @@ def typingPrint(text):
 
 
 def typingInput(text):
+    """
+    Function to add typing effect to input functions.
+    Taken from www.101computing.net/python-typing-text-effect/
+    """
     for character in text:
         sys.stdout.write(character)
         sys.stdout.flush()
@@ -63,12 +67,14 @@ def get_user_name():
     # typingPrint('So...\n')
     # time.sleep(1)
     typingPrint('We know the journey into finding what works for you and' +
-                ' your body can be complicated...\n\n')
+                ' your body can be a complicated journey...\n\n')
     # time.sleep(1)
     # typingPrint('It can be long... and frustrating...\n\n')
     # time.sleep(1)
-    typingPrint("So we are here to support you all the way on your journey by helping you track" +
-                " changes to your symptoms.\n\n")
+    typingPrint("So we are here to support you all the way" +
+                " by helping you track changes to your symptoms.\n\n")
+    typingPrint('Menu loading...\n\n')
+    time.sleep(1)
     # time.sleep(1)
     # typingPrint("We're here, to help you!\n\n")
     # time.sleep(1)
@@ -82,20 +88,24 @@ def get_user_name():
     #                    ' your name:\n\n' + Fore.LIGHTMAGENTA_EX)
     # time.sleep(1)
     # print('\n')
-    # typingPrint(Fore.WHITE + '                         Lovely to meet you, ' + Fore.LIGHTMAGENTA_EX + f'{name}!\n\n' + Fore.RESET)
+    # typingPrint(Fore.WHITE + '                         Lovely to meet you,' +
+    # ' + Fore.LIGHTMAGENTA_EX + f'{name}!\n\n' + Fore.RESET)
     # time.sleep(1)
     # print('\n\n\n')
     # return name
+    return clearScreen()
+
+    # menu()
 
 
-def update_name(name):
-    """
-    Update user_name worksheet
-    """
+# def update_name(name):
+#     """
+#     Update user_name worksheet
+#     """
 
-    user_worksheet = SHEET.worksheet('user')
-    user_worksheet.append_row([name])
-    menu()
+#     user_worksheet = SHEET.worksheet('user')
+#     user_worksheet.append_row([name])
+#     menu()
 
 
 def menu():
@@ -109,19 +119,28 @@ def menu():
           'MENU' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ----')
     print('                                  -------- ')
     print('                                    ----                \n ')
-    print(Fore.LIGHTMAGENTA_EX + '                   ----             ----             ----')
+    print(Fore.LIGHTMAGENTA_EX + '                   ----             ----' +
+          '             ----')
     print('                 --------         --------         --------')
     print('               ------------     ------------     -------------    ')
-    print('          ----- ' + Fore.RED + '1.' + Style.BRIGHT + ' Log In' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ----- ' + Fore.RED + '2.' + Style.BRIGHT + ' Register' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ------ ' + Fore.RED + ' 3.' + Style.BRIGHT + ' Guest' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' -----')
+    print('          ----- ' + Fore.RED + '1.' + Style.BRIGHT + ' Log In' +
+          Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ----- ' + Fore.RED + '2.' +
+          Style.BRIGHT + ' Register' + Fore.LIGHTMAGENTA_EX + Style.NORMAL +
+          ' ------ ' + Fore.RED + ' 3.' + Style.BRIGHT + ' Guest' +
+          Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' -----')
     print('               ------------     ------------     -------------')
     print('                 --------         --------         --------')
-    print('                   ----             ----             ----\n' + Fore.RESET)
+    print('                   ----             ----             ----\n' +
+          Fore.RESET)
     print('     ')
     print('     ')
 
     while True:
-        menu_option = typingInput('Please enter ' + Fore.LIGHTMAGENTA_EX + '(1) ' + Fore.WHITE + 'to Login,' + Fore.LIGHTMAGENTA_EX +
-                                  ' (2) ' + Fore.WHITE + 'to Register or ' + Fore.LIGHTMAGENTA_EX + '(3) ' + Fore.WHITE + 'to Continue' +
+        menu_option = typingInput('Please enter ' + Fore.LIGHTMAGENTA_EX +
+                                  '(1) ' + Fore.WHITE + 'to Login,' +
+                                  Fore.LIGHTMAGENTA_EX + ' (2) ' + Fore.WHITE +
+                                  'to Register or ' + Fore.LIGHTMAGENTA_EX +
+                                  '(3) ' + Fore.WHITE + 'to Continue' +
                                   ' as Guest. \n\n')
         # print('\n\n\n\n')
         if menu_option == '1':
@@ -152,8 +171,10 @@ def login():
     Function which takes user to login.
     """
 
-    username = input(Fore.LIGHTMAGENTA_EX + 'Please enter your username: \n\n' + Fore.RESET)
-    password_input = input(Fore.LIGHTMAGENTA_EX + 'Please enter your password: \n\n' + Fore.RESET)
+    username = input(Fore.LIGHTMAGENTA_EX + 'Please enter your username:' +
+                     '\n\n' + Fore.RESET)
+    password_input = input(Fore.LIGHTMAGENTA_EX + 'Please enter your' +
+                           'password: \n\n' + Fore.RESET)
     user_worksheet = SHEET.worksheet('user_details')
 
     if user_worksheet.find(username):
@@ -169,9 +190,12 @@ def login():
 
         if check_password_hash(password.value, password_input):
             print(' ')
-            print('Welcome back, ' + Fore.LIGHTMAGENTA_EX + f'{username}' + Fore.RESET + '! You are now logged in!\n')
+            print('Welcome back, ' + Fore.LIGHTMAGENTA_EX +
+                  f'{username}' + Fore.RESET + '! You are now logged in!\n')
             while True:
-                proceed = input('Please select (L) to proceed to logging your symptoms, (M) to go to the menu or (E) to log out: \n\n')
+                proceed = input('Please select (L) to proceed to logging' +
+                                ' your symptoms, (M) to go to the menu or' +
+                                ' (E) to log out: \n\n')
                 if proceed == 'l' or proceed == 'L':
                     print("Great, we'll get started!\n\n")
                     return cycle_phase()
@@ -201,26 +225,32 @@ def register():
 
     user = {}
     user['username'] = input('Please enter a username: \n')
-    user['password'] = generate_password_hash(input('Please enter a password: \n'))
+    user['password'] = generate_password_hash(input('Please enter a' +
+                                                    ' password: \n'))
     user['email'] = input('Please enter your email address: \n')
     # print(user)
 
     username = user['username']
-    return username
+    # return username
     # print(username)
     register_user(user, username)
-    return exit(username)
+    # return exit(username)
 
 
 def register_user(user, username):
+    """
+    Function to update user_details worksheet with user data in register function.
+    """
 
     user_worksheet = SHEET.worksheet('user_details')
     user_worksheet.append_row([x for x in user.values()])
-    print(f'Lovely to meet you {username}! Your details have been registered...\n\n')
+    print(f'Lovely to meet you {username}! Your details have been registered' +
+          '...\n\n')
 
     while True:
                 proceed = input('Select (L) to proceed to logging ' +
-                                'your symptoms or (M) to return to the main menu: \n\n')
+                                'your symptoms or (M) to return to the main' +
+                                ' menu: \n\n')
                 if proceed == 'l' or proceed == 'L':
                     print("Great, we'll get started!\n\n")
                     return cycle_phase()
@@ -245,23 +275,32 @@ def login_menu():
           'MENU' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ----')
     print('                                  -------- ')
     print('                                    ----                \n ')
-    print(Fore.LIGHTMAGENTA_EX + '                   ----             ----             ----')
+    print(Fore.LIGHTMAGENTA_EX + '                   ----             ----' +
+          '             ----')
     print('                 --------         --------         --------')
     print('               ------------     ------------     -------------    ')
-    print('          ----- ' + Fore.RED + '1.' + Style.BRIGHT + ' About' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ---- ' + Fore.RED + '2.' + Style.BRIGHT + ' Log Symptoms' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ---- ' + Fore.RED + ' 3.' + Style.BRIGHT + ' Exit' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' -----')
+    print('          ----- ' + Fore.RED + '1.' + Style.BRIGHT + ' About' +
+          Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ---- ' + Fore.RED + '2.' +
+          Style.BRIGHT + ' Log Symptoms' + Fore.LIGHTMAGENTA_EX +
+          Style.NORMAL + ' ---- ' + Fore.RED + ' 3.' + Style.BRIGHT +
+          ' Exit' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' -----')
     print('               ------------     ------------     -------------')
     print('                 --------         --------         --------')
-    print('                   ----             ----             ----\n' + Fore.RESET)
+    print('                   ----             ----             ----\n' +
+          Fore.RESET)
     print('     ')
     print('     ')
 
     while True:
-        login_menu_option = typingInput('Please enter (1) to learn more about Cycle Changes Tracker,' +
-                                  ' (2) to Log Your Symptoms or (3) to Exit\n\n')
+        login_menu_option = typingInput('Please enter (1) to learn more' +
+                                        ' about Cycle Changes Tracker,' +
+                                        ' (2) to Log Your Symptoms or (3)' +
+                                        ' to Exit\n\n')
         # print('\n\n\n\n')
         if login_menu_option == '1':
             # print('\n')
-            typingPrint('Taking you to earn more about Cycle Changes Tracker...\n\n')
+            typingPrint('Taking you to earn more about Cycle Changes' +
+                        'Tracker...\n\n')
             return about()
             break
         elif login_menu_option == '2':
@@ -289,15 +328,16 @@ def cycle_phase():
     time.sleep(1)
 
     while True:
-        option = typingInput(Fore.LIGHTMAGENTA_EX + 'Are you on your period today? Y/N\n\n' + Fore.RESET)
+        option = typingInput(Fore.LIGHTMAGENTA_EX + 'Are you on your period' +
+                             ' today? Y/N\n\n' + Fore.RESET)
         print('\n')
         if option == 'y' or option == 'Y':
             typingPrint("We'll ask you some questions about the symptoms"
                         " you're experiencing today...\n\n")
             return pain_exp()
         elif option == 'n' or option == 'N':
-            typingPrint("We'll ask you some questions about any symptoms you may"
-            " be experiencing today\n\n")
+            typingPrint("We'll ask you some questions about any symptoms" +
+                        "you may be experiencing today\n\n")
             return any_other_phases()
         else:
             print(f'{option} is not a valid option!\n\n')
@@ -314,13 +354,18 @@ def pain_exp():
     menstrual_phase = {}
 
     while True:
-        pain_scale = typingInput(Fore.LIGHTMAGENTA_EX + "Where would you place the level of pain you're experiencing on a scale of 0 - 10?\n" +
-        Fore.LIGHTWHITE_EX + "(0) No Pain --" + Fore.WHITE + "--" + Fore.RED + "---" + Fore.LIGHTRED_EX + "--- Extremely Painful (10)\n\n" + Fore.RESET)
+        typingPrint(Fore.LIGHTMAGENTA_EX + "Where would you" +
+                    " place the level of pain you're" +
+                    " experiencing on a scale of 0 - 10?\n")
+        pain_scale = input(Fore.LIGHTWHITE_EX + "(0) No Pain --" + Fore.WHITE +
+                           "--" + Fore.RED + "---" + Fore.LIGHTRED_EX +
+                           "--- Extremely Painful" + " (10)\n\n" + Fore.RESET)
 
         if pain_scale.isdigit() and int(pain_scale) > 0:
             print('     ')
-            typingPrint("Sorry to hear you're experiencing pain today. It's great "
-            "that you're logging symptoms, lets hope to change that.\n\n")
+            typingPrint("Sorry to hear you're experiencing pain today. It's" +
+                        " great that you're logging symptoms, lets hope to" +
+                        " change that.\n\n")
             break
         elif pain_scale.isdigit() and int(pain_scale) == 0:
             print('     ')
@@ -333,7 +378,9 @@ def pain_exp():
     menstrual_phase['Pain'] = pain_scale
 
     while True:
-        pain_exp_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you experienced this level of pain before? Y/N \n\n' + Fore.RESET)
+        pain_exp_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you' +
+                                      ' experienced this level of pain' +
+                                      ' before? Y/N \n\n' + Fore.RESET)
         if pain_exp_before == 'y' or pain_exp_before == 'Y' or pain_exp_before == 'n' or pain_exp_before == 'N':
             print('     ')
             typingPrint("Okay. We'll log this for you.\n\n")
@@ -349,8 +396,13 @@ def pain_exp():
     menstrual_phase['Pain Exp Before'] = pain_exp_before
 
     while True:
-        flow_level = typingInput(Fore.LIGHTMAGENTA_EX + 'How would you describe your flow today on a scale of 1 - 5? \n'
-        + Fore.LIGHTWHITE_EX + '(0) None, ' + Fore.WHITE + '(1) Very Light, ' + Fore.RED + '(2) Light, (3) Medium, ' + Fore.LIGHTRED_EX + '(4) Heavy, (5) Very Heavy?\n\n' + Fore.RESET)
+        flow_level = typingInput(Fore.LIGHTMAGENTA_EX + 'How would you' +
+                                 ' describe your flow today on a scale' +
+                                 'of 1 - 5? \n' + Fore.LIGHTWHITE_EX +
+                                 '(0) None, ' + Fore.WHITE + '(1)' +
+                                 ' Very Light, ' + Fore.RED + '(2)' +
+                                 ' Light, (3) Medium, ' + Fore.LIGHTRED_EX +
+                                 '(4) Heavy, (5) Very Heavy?\n\n' + Fore.RESET)
         if flow_level.isdigit() and int(flow_level) >= 0 and int(flow_level) <= 5:
             print('     ')
             typingPrint("Okay. We'll log this for you.\n\n")
@@ -383,6 +435,10 @@ def pain_exp():
 
 
 def update_menstrual_phase(menstrual_phase):
+    """
+    Function that updates the menstrual_phase worksheet with the data
+    input from the set of questions asked if the user is on their period.
+    """
 
     new_worksheet = SHEET.worksheet('menstrual_phase')
     new_worksheet.append_row([x for x in menstrual_phase.values()])
@@ -391,9 +447,9 @@ def update_menstrual_phase(menstrual_phase):
 
 
 def any_other_phases():
-
     """
-    User will be asked questions regarding symptoms experienced at other phases in their cycle.
+    User will be asked questions regarding symptoms experienced at other
+    phases in their cycle.
     Data added to a dictionary which is sent to the worksheet 'other_phase'
     """
 
@@ -407,10 +463,14 @@ def any_other_phases():
     # any_other_phases['Date'] = today
 
     while True:
-        other_phase_pain = typingInput(Fore.LIGHTMAGENTA_EX + 'Are you experiencing any pain unrelated to your period? Y/N\n\n' + Fore.RESET)
+        other_phase_pain = typingInput(Fore.LIGHTMAGENTA_EX +
+                                       'Are you experiencing any' +
+                                       ' pain unrelated to your period?' +
+                                       ' Y/N\n\n' + Fore.RESET)
         if other_phase_pain == 'y' or other_phase_pain == 'Y':
             print('\n')
-            typingPrint("Sorry to hear you're experiencing pain today. We'll log these symptoms for you.\n\n")
+            typingPrint("Sorry to hear you're experiencing pain today." +
+                        "We'll log these symptoms for you.\n\n")
             break
         elif other_phase_pain == 'n' or other_phase_pain == 'N':
             print('\n')
@@ -424,20 +484,25 @@ def any_other_phases():
     any_other_phases['Pain'] = other_phase_pain
 
     while True:
-        other_phase_pain_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you experienced pain unrelated to your period before? Y/N\n\n' + Fore.RESET)
+        other_phase_pain_before = typingInput(Fore.LIGHTMAGENTA_EX +
+                                              'Have you experienced pain' +
+                                              ' unrelated to your period' +
+                                              ' before? Y/N\n\n' + Fore.RESET)
         if other_phase_pain_before == 'y' or other_phase_pain_before == 'Y' or other_phase_pain_before == 'n' or other_phase_pain_before == 'N':
             print('\n')
             typingPrint("Okay. We'll log this for you.\n\n")
             break
         else:
             print('\n')
-            typingPrint(f'{other_phase_pain_before} is not a valid option!\n\n')
+            typingPrint(f'{other_phase_pain_before} is not a valid' +
+                        ' option!\n\n')
             continue
 
     any_other_phases['Pain Exp Before'] = other_phase_pain_before
 
     while True:
-        spotting = typingInput(Fore.LIGHTMAGENTA_EX + 'Are you experiencing any spotting today? Y/N\n\n' + Fore.RESET)
+        spotting = typingInput(Fore.LIGHTMAGENTA_EX + 'Are you experiencing' +
+                               ' any spotting today? Y/N\n\n' + Fore.RESET)
         if spotting == 'y' or spotting == 'Y' or spotting == 'n' or spotting == 'N':
             print('\n')
             typingPrint("Okay. We'll log this for you.\n\n")
@@ -450,7 +515,9 @@ def any_other_phases():
     any_other_phases['Spotting'] = spotting
 
     while True:
-        spotting_exp_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you experienced spotting before? Y/N\n\n' + Fore.RESET)
+        spotting_exp_before = typingInput(Fore.LIGHTMAGENTA_EX +
+                                          'Have you experienced spotting' +
+                                          ' before? Y/N\n\n' + Fore.RESET)
         if spotting_exp_before == 'y' or spotting_exp_before == 'Y' or spotting_exp_before == 'n' or spotting_exp_before == 'N':
             print('\n')
             typingPrint("Okay. We'll log this for you.\n\n")
@@ -465,6 +532,11 @@ def any_other_phases():
 
 
 def update_any_other_phases(any_other_phases):
+    """
+    Function that updates the other_phase worksheet with the data
+    input from the set of questions asked if the user is at any other phase
+    of their cycle.
+    """
 
     new_worksheet = SHEET.worksheet('other_phase')
     new_worksheet.append_row([x for x in any_other_phases.values()])
@@ -487,14 +559,16 @@ def get_data_other_phase():
 
 
 def start():
-
     """
     Title that shows when program is run.
     """
     print('     ')
-    print(Fore.LIGHTMAGENTA_EX + '                       -------------------------------')
+    print(Fore.LIGHTMAGENTA_EX + '                       ' +
+          '-------------------------------')
     print('                    -------------------------------------')
-    print('                  --------' + Fore.RED + Style.BRIGHT + ' Cycle Changes Tracker ' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + '----------')
+    print('                  --------' + Fore.RED + Style.BRIGHT +
+          ' Cycle Changes Tracker ' + Fore.LIGHTMAGENTA_EX + Style.NORMAL +
+          '----------')
     print('                    -------------------------------------')
     print('                       -------------------------------\n' +
           Fore.RESET)
@@ -506,15 +580,18 @@ def exit():
     Exit function to end the application and thank the user for logging \
     their symptoms.
     """
-    typingPrint("Thank you for logging your symptoms today, " + Fore.LIGHTMAGENTA_EX + f"{username}." + Fore.WHITE + " Have a great day and see you tommorow!\n\n")
+    typingPrint("Thank you for logging your symptoms today, " +
+                Fore.LIGHTMAGENTA_EX + f"{username}." + Fore.WHITE +
+                " Have a great day and see you tommorow!\n\n")
     time.sleep(1)
 
     menu()
 
 
 start()
-name = get_user_name()
-update_name(name)
+get_user_name()
+# name = get_user_name()
+# update_name(name)
 menu()
 # username = login()
 # register_user(username)
