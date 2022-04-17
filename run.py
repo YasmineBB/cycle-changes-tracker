@@ -314,99 +314,44 @@ def pain_exp():
 
     menstrual_phase = {}
 
-    # pain_scale = typingInput(Fore.LIGHTMAGENTA_EX + "Where would you place the level of pain you're experiencing on a scale of 0 - 10?\n" +
-    # Fore.LIGHTWHITE_EX + "(0) No Pain --" + Fore.WHITE + "--" + Fore.RED + "---" + Fore.LIGHTRED_EX + "--- Extremely Painful (10)\n\n" + Fore.RESET)
-  
-    # while True:
-    #     integer = int(pain_scale)
 
-    #     if integer > 0:
-    #         print('     ')
-    #         typingPrint("Sorry to hear you're experiencing pain today. It's great "
-    #         "that you're logging symptoms, lets hope to change that.\n\n")
-    #         break
-    #     elif integer == 0:
-    #         print('     ')
-    #         typingPrint("No pain today? Thats great!\n\n")
-    #         break
-    #         # return pain_exp()
-    #     else:
-    #     # if integer != int:
-    #         print(f'({pain_scale} is not a valid option!\n\n')
-    #         # return on_period_pain()
-    #         continue
-    # # return pain_scale
-    # menstrual_phase['Pain'] = pain_scale
+    while True:
+        pain_scale = typingInput(Fore.LIGHTMAGENTA_EX + "Where would you place the level of pain you're experiencing on a scale of 0 - 10?\n" +
+        Fore.LIGHTWHITE_EX + "(0) No Pain --" + Fore.WHITE + "--" + Fore.RED + "---" + Fore.LIGHTRED_EX + "--- Extremely Painful (10)\n\n" + Fore.RESET)
+
+        if pain_scale.isdigit() and int(pain_scale) > 0:
+            print('     ')
+            typingPrint("Sorry to hear you're experiencing pain today. It's great "
+            "that you're logging symptoms, lets hope to change that.\n\n")
+            break
+        elif pain_scale.isdigit() and int(pain_scale) == 0:
+            print('     ')
+            typingPrint("No pain today? Thats great!\n\n")
+            break
+        else:
+            print(f'{pain_scale} is not a valid option!\n\n')
+            continue
+    # return pain_scale
+    menstrual_phase['Pain'] = pain_scale
     
-    # while True:
-    #     pain_exp_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you experienced this level of pain before? Y/N \n\n' + Fore.RESET)
-    #     if pain_exp_before == 'y' or pain_exp_before == 'Y' or pain_exp_before == 'n' or pain_exp_before == 'N':
-    #         print('     ')
-    #         typingPrint("Okay. We'll log this for you.\n\n")
-    #         # print(pain_exp_before)
-    #         # return on_period_flow_level()
-    #         break
-    #     else:
-    #         print(f'{pain_exp_before} is not a valid option!\n\n')
-    #         continue
+    
+    while True:
+        pain_exp_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you experienced this level of pain before? Y/N \n\n' + Fore.RESET)
+        if pain_exp_before == 'y' or pain_exp_before == 'Y' or pain_exp_before == 'n' or pain_exp_before == 'N':
+            print('     ')
+            typingPrint("Okay. We'll log this for you.\n\n")
+            # print(pain_exp_before)
+            # return on_period_flow_level()
+            break
+        else:
+            print(f'{pain_exp_before} is not a valid option!\n\n')
+            continue
         
-    # # return pain_exp_before
+    # return pain_exp_before
 
-    # menstrual_phase['Pain Exp Before'] = pain_exp_before
-
-# def update_pain_exp(pain_exp_before):
-#     """
-#     Update menstrual_phase worksheet
-#     """
-
-#     menstrual_phase_worksheet = SHEET.worksheet('menstrual_phase')
-#     menstrual_phase_worksheet.append_row([pain_exp_before])
-#     typingPrint('Data has been saved!\n')
-#     print(pain_exp_before)
+    menstrual_phase['Pain Exp Before'] = pain_exp_before
 
 
-# def on_period_flow_level():
-
-    # while True:
-    #     flow_level = typingPrint(Fore.LIGHTMAGENTA_EX + 'How would you describe' +
-    #       ' your flow today on a scale of 1 - 5? \n')
-    #     input(Fore.LIGHTWHITE_EX + '(0) None, ' + Fore.WHITE + '(1) Very Light,'
-    #       + Fore.RED + '(2) Light, (3) Medium, ' + Fore.LIGHTRED_EX + '(4)' +
-    #         'Heavy, (5) Very Heavy?\n\n' + Fore.RESET)
-    #     if int(flow_level) >= 0 and int(flow_level) <= 5:
-    #         print('     ')
-    #         typingPrint("Okay. We've logged this for you.\n\n")
-    #         # return flow_exp()
-    #         break
-    #     elif int(flow_level) == False and int(flow_level) >5:
-    #         print('     ')
-    #         print(f'{flow_level} is not a valid input. Please input a number between 0 and 5.\n')
-    #     #   # print("Okay. We've logged this for you.\n\n")
-    #     #   return flow_exp()
-    #     else:
-    #         # print(f'{flow_level} is not a valid option!\n')
-    #         continue
-    
-    # flow_level = None
-    # while flow_level is None:
-    #     input_value = typingInput(Fore.LIGHTMAGENTA_EX + 'How would you describe your flow today on a scale of 1 - 5?\n'
-    #                               + Fore.LIGHTWHITE_EX + '(0) None, ' + Fore.WHITE +  '(1) Very Light, ' + Fore.RED + '(2) Light, (3) Medium, ' + Fore.LIGHTRED_EX + '(4) Heavy, (5) Very Heavy?\n\n' + Fore.RESET)
-    #     try:
-    #     # try and convert the string input to a number
-    #         flow_level = int(input_value)
-    #     except ValueError:
-    #     # tell the user off
-    #         print("{flow_level} is not a number, please enter a number only".format(input=input_value))
-    # if flow_level >= 0 and flow_level <= 5:
-    #     print("Okay. We'll log this for you.\n\n")
-    #     break
-    # elif flow_level > 5:
-    #     print(f'{flow_level} is not a valid option!\n\n')
-    #     continue
-    # else:
-    #     print(f'{flow_level} is not a valid option!\n\n')
-    #     continue
-    
     while True:
         flow_level = typingInput(Fore.LIGHTMAGENTA_EX + 'How would you describe your flow today on a scale of 1 - 5? \n'
         + Fore.LIGHTWHITE_EX + '(0) None, ' + Fore.WHITE +  '(1) Very Light, ' + Fore.RED + '(2) Light, (3) Medium, ' + Fore.LIGHTRED_EX + '(4) Heavy, (5) Very Heavy?\n\n' + Fore.RESET)
@@ -452,7 +397,7 @@ def update_menstrual_phase(menstrual_phase):
     new_worksheet = SHEET.worksheet('menstrual_phase')
     new_worksheet.append_row([x for x in menstrual_phase.values()])
     typingPrint('Great! Your symptoms have been updated!\n\n')
-    exit(username)
+    exit()
 
 
 def any_other_phases():
@@ -534,7 +479,7 @@ def update_any_other_phases(any_other_phases):
     new_worksheet = SHEET.worksheet('other_phase')
     new_worksheet.append_row([x for x in any_other_phases.values()])
     typingPrint('Great! Your symptoms have been updated!\n\n')
-    exit(username)
+    exit()
 
 
 def get_data_other_phase():
@@ -586,20 +531,10 @@ menu()
 # username = login()
 # register_user(username)
 
-# pain_scale = on_period_pain()
-# update_pain_scale(pain_scale)
-
-# pain_exp_before = pain_exp()
-# update_pain_exp(pain_exp_before)
-# print(pain_exp_before)
-
 update_any_other_phases(any_other_phases)
+
 get_data_other_phase(get_data)
 
 update_menstrual_phase(menstrual_phase)
 
-# pain_exp_before = pain_exp()
-# update_pain_exp(pain_exp_before)
-# flow_exp()
-# on_period()
 # exit()
