@@ -98,12 +98,12 @@ I provided an option for the user to continue as guest in order to give the user
 
 Upon the user selecting (Y) to being on their period, they are then presented with a selection of questions related to their menstrual phase.  
 
-They are asked:
+They are asked questions regarding the level of pain and flow they are experiencing and whether they have experienced that level before.
 
 
 #### Any Other Phase Symptoms Tracker  
 
-Upon selecting 'N' to being on their period, the user is provided a sequence of questions related to any other symptoms they may be experiencing. I have included only two of the many symptoms women can experience, which are regarding spotting and pain.  
+Upon selecting 'N' to being on their period, the user is provided a sequence of questions related to any other symptoms they may be experiencing. I have included only two of the many symptoms women can experience, which are regarding spotting and pain. The user is asked if they are experiencing and pain or spotting and if they have experienced those things before.
 
 
 ### Future Features to Implement  
@@ -126,8 +126,7 @@ I would also an option for the user to add any notes along the way regarding the
 - [gspread](https://pypi.org/project/gspread/) was used to connect my code to Google Sheets where user data is stored.
 - [Werkzeug](https://werkzeug.palletsprojects.com/en/2.1.x/) was used to create a password hash for the register user aspect of the programme with the data sent to a Google worksheet.
 - [Colorama](https://pypi.org/project/colorama/) was used to add colour to the programme.
-- typing print effect
-- 
+
 
 ## Testing  
 
@@ -138,11 +137,16 @@ PIC EXAMPLE
 
 ### PEP8
 
+All code has been passed through the PEP8 online checker with no errors.  
+
+ADD PIC
 
 ## Bugs  
 
 - **Colorama light colours not showing on deployed site**  
   - To add some visuals to the questions asking the user to choose their pain and flow level on a scale, I initially used four colours
+- I had some issues after continuing an else statement in a while loop. It ran an infinite loop of the else print statement.
+- When a user tried to log in, I had an initial problem where if the username wasn't stored in the worksheet, it threw an AttributeError rather than the print message in the else statement to request a valid username. Through tutor support assistance 
 
 ## Development  
 
