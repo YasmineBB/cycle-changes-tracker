@@ -204,14 +204,16 @@ def login():
             while True:
                 proceed = typingInput('Please select (L) to proceed to' +
                                       ' logging your symptoms, (D) to' +
-                                      ' go to your dashboard or' +
-                                ' (E) to log out: \n\n')
+                                      ' go to your dashboard' +
+                                      ' or (E) to log out: \n\n')
                 if proceed == 'l' or proceed == 'L':
+                    print(' ')
                     typingPrint("Great, we'll get started!\n\n")
                     return cycle_phase()
                     break
                 elif proceed == 'd' or proceed == 'D':
                     time.sleep(1)
+                    print(' ')
                     typingPrint('Loading Dashboard...\n\n')
                     return login_menu(username)
                     break
@@ -276,12 +278,13 @@ def register_user(user):
                     return cycle_phase()
                     break
                 elif proceed == 'd' or proceed == 'D':
+                    print(' ')
                     typingPrint('Loading dashboard...\n\n')
                     # return clearScreen()
                     return login_menu(user)
                     break
                 elif proceed == 'e' or proceed == 'E':
-                    print('\n')
+                    print(' ')
                     typingPrint("Hope to see you back soon, " +
                                 Fore.LIGHTMAGENTA_EX +
                                 f"{user['username'].capitalize()}!\n\n")
@@ -607,8 +610,8 @@ def get_data(user):
     print('    ')
 
     typingPrint(Fore.LIGHTMAGENTA_EX + 'Here are all the symptoms you have' +
-                ' logged to date at any other phase in your cycle: \n\n' +
-                Fore.RESET)
+                ' logged to date at any other phase' +
+                ' in your cycle: \n\n' + Fore.RESET)
 
     show_menstrual_phase_data = {"Menstrual Phase": \
         SHEET.worksheet("menstrual_phase").get_all_values()
