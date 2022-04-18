@@ -5,7 +5,7 @@ import time
 import os
 import sys
 from werkzeug.security import generate_password_hash, check_password_hash
-# from datetime import date
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -67,7 +67,7 @@ def get_user_name():
     # typingPrint('So...\n')
     # time.sleep(1)
     typingPrint('We know the journey into finding what works for you and' +
-                ' your body can be a complicated journey...\n\n')
+                ' your body can be a complicated one...\n\n')
     # time.sleep(1)
     # typingPrint('It can be long... and frustrating...\n\n')
     # time.sleep(1)
@@ -201,7 +201,7 @@ def login():
                     return cycle_phase()
                     break
                 elif proceed == 'm' or proceed == 'M':
-                    print('Returning to Main Menu...\n\n')
+                    print(' Menu loading...\n\n')
                     return login_menu()
                     break
                 elif proceed == 'e' or proceed == 'E':
@@ -224,15 +224,17 @@ def register():
     """
 
     user = {}
-    user['username'] = input('Please enter a username: \n')
-    user['password'] = generate_password_hash(input('Please enter a' +
-                                                    ' password: \n'))
-    user['email'] = input('Please enter your email address: \n')
+    user['username'] = typingInput(Fore.LIGHTMAGENTA_EX + 'Please enter a username: \n' + Fore.RESET)
+    user['password'] = generate_password_hash(typingInput(Fore.LIGHTMAGENTA_EX + 'Please enter a' +
+                                                    ' password: \n' + Fore.RESET))
+    user['email'] = typingInput(Fore.LIGHTMAGENTA_EX + 'Please enter your email address: \n' + Fore.RESET)
     # print(user)
+    
 
     username = user['username']
+    # if username
     # return username
-    # print(username)
+    print(username)
     register_user(user, username)
     # return exit(username)
 
@@ -318,6 +320,15 @@ def login_menu():
             continue
 
 
+def about():
+    """
+    Funnction creating an about section where the user is directed to
+    if choosing to find out more about Cycle Changes Tracker.
+    """
+    
+    
+    
+    
 def cycle_phase():
     """
     User can state whether or not they are on their period.
@@ -352,6 +363,13 @@ def pain_exp():
     """
 
     menstrual_phase = {}
+    
+    the_date = datetime.now().date()
+    dt_string = the_date.strftime("%d/%m/%Y")
+    print(the_date)
+
+
+    menstrual_phase['Date'] = dt_string
 
     while True:
         typingPrint(Fore.LIGHTMAGENTA_EX + "Where would you" +
@@ -398,7 +416,7 @@ def pain_exp():
     while True:
         flow_level = typingInput(Fore.LIGHTMAGENTA_EX + 'How would you' +
                                  ' describe your flow today on a scale' +
-                                 'of 1 - 5? \n' + Fore.LIGHTWHITE_EX +
+                                 ' of 1 - 5? \n' + Fore.LIGHTWHITE_EX +
                                  '(0) None, ' + Fore.WHITE + '(1)' +
                                  ' Very Light, ' + Fore.RED + '(2)' +
                                  ' Light, (3) Medium, ' + Fore.LIGHTRED_EX +
@@ -450,17 +468,17 @@ def any_other_phases():
     """
     User will be asked questions regarding symptoms experienced at other
     phases in their cycle.
-    Data added to a dictionary which is sent to the worksheet 'other_phase'
+    Data added to a dictionary which is sent to the worksheet 'other_phase'.
     """
 
     any_other_phases = {}
+    
+    the_date = datetime.now().date()
+    dt_string = the_date.strftime("%d/%m/%Y")
+    print(the_date)
 
-    # while True:
-    #   today = date.today()
-    #   print("Today's date:", today)
-    #   break
 
-    # any_other_phases['Date'] = today
+    any_other_phases['Date'] = dt_string
 
     while True:
         other_phase_pain = typingInput(Fore.LIGHTMAGENTA_EX +
@@ -537,7 +555,7 @@ def update_any_other_phases(any_other_phases):
     input from the set of questions asked if the user is at any other phase
     of their cycle.
     """
-
+    
     new_worksheet = SHEET.worksheet('other_phase')
     new_worksheet.append_row([x for x in any_other_phases.values()])
     typingPrint('Great! Your symptoms have been updated!\n\n')
