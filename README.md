@@ -44,7 +44,6 @@ Below are some scenarios a user may find themselves in which would using the Cyc
 - I want to be asked questions related symptoms during my cycle that I can track and feedback to my Gynaecologist.  
  
 
-
 #### Returning User
 
 - I want to be able to log in.  

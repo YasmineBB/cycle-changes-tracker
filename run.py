@@ -203,8 +203,8 @@ def login():
                   '! You are now logged in!\n\n')
             while True:
                 proceed = typingInput('Please select (L) to proceed to' +
-                                      'logging your symptoms, (D) to' +
-                                      'go to your dashboard or' +
+                                      ' logging your symptoms, (D) to' +
+                                      ' go to your dashboard or' +
                                 ' (E) to log out: \n\n')
                 if proceed == 'l' or proceed == 'L':
                     typingPrint("Great, we'll get started!\n\n")
@@ -219,7 +219,7 @@ def login():
                     print(' ')
                     time.sleep(1)
                     typingPrint(f'See you next time, {username}!\n\n')
-                    typingPrint('Logging out...')
+                    typingPrint('Logging out...\n\n')
                     return menu()
                 else:
                     print(f'{proceed} is not a valid option!')
@@ -243,7 +243,7 @@ def register():
                                                     ' password: \n' +
                                                     Fore.RESET))
     user['email'] = input(Fore.LIGHTMAGENTA_EX + 'Please enter your email' +
-                          'address: \n' + Fore.RESET)
+                          ' address: \n' + Fore.RESET)
 
     register_user(user)
     username = user['username']
@@ -251,18 +251,21 @@ def register():
 
     return username
     # exit(user, username)
-
+    get_data(user)
 
 def register_user(user):
     """
-    Function to update user_details worksheet with user data in register function.
+    Function to update user_details worksheet with user data in
+    register function.
     """
 
     user_worksheet = SHEET.worksheet('user_details')
     user_worksheet.append_row([x for x in user.values()])
     print(' ')
-    typingPrint("Lovely to meet you " + Fore.LIGHTMAGENTA_EX + f"{user['username'].capitalize()}" + Fore.RESET + "! Your details have been registered" +
-          " and you are now logged in...\n\n")
+    typingPrint("Lovely to meet you " + Fore.LIGHTMAGENTA_EX +
+                f"{user['username'].capitalize()}" + Fore.RESET +
+                "! Your details have been registered" +
+                " and you are now logged in...\n\n")
 
     while True:
                 proceed = typingInput('Select (L) to proceed to logging ' +
@@ -279,7 +282,9 @@ def register_user(user):
                     break
                 elif proceed == 'e' or proceed == 'E':
                     print('\n')
-                    typingPrint("Hope to see you back soon, " + Fore.LIGHTMAGENTA_EX + f"{user['username'].capitalize()}!\n\n")
+                    typingPrint("Hope to see you back soon, " +
+                                Fore.LIGHTMAGENTA_EX +
+                                f"{user['username'].capitalize()}!\n\n")
                     time.sleep(1)
                     return menu()
                 else:
@@ -322,7 +327,7 @@ def login_menu(user):
         if login_menu_option == '1':
             # print('\n')
             typingPrint('Taking you to view the symptoms you have logged to date...\n\n')
-            return get_data()
+            return get_data(user)
             break
         elif login_menu_option == '2':
             print('\n')
@@ -331,7 +336,8 @@ def login_menu(user):
             break
         elif login_menu_option == '3':
             print('\n')
-            typingPrint("Hope to see you back soon, " + Fore.LIGHTMAGENTA_EX + f"{user['username'].capitalize()}!\n\n")
+            typingPrint("Hope to see you back soon, " + Fore.LIGHTMAGENTA_EX +
+                        f"{user['username'].capitalize()}!\n\n")
             time.sleep(1)
             return menu()
             break
@@ -360,7 +366,7 @@ def cycle_phase():
             return menstrual_phase()
         elif option == 'n' or option == 'N':
             typingPrint("We'll ask you some questions about any symptoms" +
-                        "you may be experiencing today\n\n")
+                        " you may be experiencing today\n\n")
             return any_other_phases()
         else:
             print(f'{option} is not a valid option!\n\n')
@@ -448,7 +454,8 @@ def menstrual_phase():
         flow_exp_before = typingInput(Fore.LIGHTMAGENTA_EX + 'Have you' +
                                       ' experienced this level of flow' +
                                       ' before? Y/N\n\n' + Fore.RESET)
-        if flow_exp_before == 'y' or flow_exp_before == 'Y' or flow_exp_before == 'n' or flow_exp_before == 'N':
+        if flow_exp_before == 'y' or flow_exp_before == 'Y' or \
+            flow_exp_before == 'n' or flow_exp_before == 'N':
             print('     ')
             typingPrint("Okay. We'll log this for you.\n\n")
             # return exit()
@@ -485,7 +492,6 @@ def any_other_phases():
 
     the_date = datetime.now().date()
     dt_string = the_date.strftime("%d/%m/%Y")
-    print(the_date)
 
     any_other_phases['Date'] = dt_string
 
@@ -497,7 +503,7 @@ def any_other_phases():
         if other_phase_pain == 'y' or other_phase_pain == 'Y':
             print('\n')
             typingPrint("Sorry to hear you're experiencing pain today." +
-                        "We'll log these symptoms for you.\n\n")
+                        " We'll log these symptoms for you.\n\n")
             break
         elif other_phase_pain == 'n' or other_phase_pain == 'N':
             print('\n')
@@ -515,7 +521,8 @@ def any_other_phases():
                                               'Have you experienced pain' +
                                               ' unrelated to your period' +
                                               ' before? Y/N\n\n' + Fore.RESET)
-        if other_phase_pain_before == 'y' or other_phase_pain_before == 'Y' or other_phase_pain_before == 'n' or other_phase_pain_before == 'N':
+        if other_phase_pain_before == 'y' or other_phase_pain_before == 'Y' or \
+            other_phase_pain_before == 'n' or other_phase_pain_before == 'N':
             print(' ')
             typingPrint("Okay. We'll log this for you.\n\n")
             break
@@ -530,7 +537,8 @@ def any_other_phases():
     while True:
         spotting = typingInput(Fore.LIGHTMAGENTA_EX + 'Are you experiencing' +
                                ' any spotting today? Y/N\n\n' + Fore.RESET)
-        if spotting == 'y' or spotting == 'Y' or spotting == 'n' or spotting == 'N':
+        if spotting == 'y' or spotting == 'Y' or spotting == 'n' or \
+            spotting == 'N':
             print(' ')
             typingPrint("Okay. We'll log this for you.\n\n")
             break
@@ -545,7 +553,8 @@ def any_other_phases():
         spotting_exp_before = typingInput(Fore.LIGHTMAGENTA_EX +
                                           'Have you experienced spotting' +
                                           ' before? Y/N\n\n' + Fore.RESET)
-        if spotting_exp_before == 'y' or spotting_exp_before == 'Y' or spotting_exp_before == 'n' or spotting_exp_before == 'N':
+        if spotting_exp_before == 'y' or spotting_exp_before == 'Y' or \
+            spotting_exp_before == 'n' or spotting_exp_before == 'N':
             print('\n')
             typingPrint("Okay. We'll log this for you.\n\n")
             break
@@ -571,7 +580,7 @@ def update_any_other_phases(any_other_phases):
     exit()
 
 
-def get_data():
+def get_data(user):
 
     print('Loading data...\n\n')
     # get_data = SHEET.worksheet('other_phase').get_all_values()
@@ -583,7 +592,7 @@ def get_data():
     # phase_data.field_names = ['Date', 'Pain?', 'Pain Exp Before?', 'Spotting?', 'Spotting Exp Before?']
 
     typingPrint(Fore.LIGHTMAGENTA_EX + 'Here are all the symptoms you have' +
-                'logged to date during your Menstrual Phase: \n\n' +
+                ' logged to date during your Menstrual Phase: \n\n' +
                 Fore.RESET)
 
     show_other_phase_data = {
@@ -598,10 +607,11 @@ def get_data():
     print('    ')
 
     typingPrint(Fore.LIGHTMAGENTA_EX + 'Here are all the symptoms you have' +
-                'logged to date at any other phase in your cycle: \n\n' +
+                ' logged to date at any other phase in your cycle: \n\n' +
                 Fore.RESET)
 
-    show_menstrual_phase_data = {"Menstrual Phase": SHEET.worksheet("menstrual_phase").get_all_values()
+    show_menstrual_phase_data = {"Menstrual Phase": \
+        SHEET.worksheet("menstrual_phase").get_all_values()
                                  }
 
     print(tabulate(show_menstrual_phase_data, headers='firstrow',
@@ -610,7 +620,19 @@ def get_data():
                    tablefmt="grid"))
 
     print(' ')
-    typingInput('Select (1) to go to your Dashboard or (2) to Log Out: \n\n')
+    while True:
+        leave_data = typingInput('Select (D) to go to your Dashboard or (L) to Log Out: \n\n')
+        if leave_data == 'd' or leave_data == 'D':
+            typingPrint('Loading Dashboard...\n\n')
+            return login_menu(user)
+            break
+        elif leave_data == 'l' or leave_data == 'L':
+            typingPrint('Logging out...')
+            return menu()
+            break
+        else:
+            print(f'{leave_data} is not a valid option!\n\n')
+            continue
 
 
 def start():
@@ -655,7 +677,7 @@ exit(user, username)
 
 update_any_other_phases(any_other_phases)
 
-get_data(get_data)
+get_data(user)
 
 update_menstrual_phase(menstrual_phase)
 
