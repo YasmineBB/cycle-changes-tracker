@@ -2,7 +2,7 @@
 
 ## Live Site  
 
-View the app [here](https://cycle-changes-tracker.herokuapp.com/).
+[Cycle Changes Tracker](https://cycle-changes-tracker.herokuapp.com/)
 
 
 ## Table of Contents  
@@ -120,9 +120,9 @@ Once the user selects to proceed to log their symptoms, they are asked:
 
 Upon the user selecting (Y) to being on their period, they are then presented with a selection of questions related to their menstrual phase.  
 
-They are asked questions regarding the level of pain and flow they are experiencing and whether they have experienced that level before. At each question the user input is validated and error messages are presented if the wrong data is input.
+They are asked questions regarding the level of pain and flow they are experiencing and whether they have experienced that level before. At each question the user input is validated, and error messages are presented if the wrong data is input.
 
-PIC
+![Error1](./assets/README%20screenshots/error-example-mp.png)
 
 
 #### Any Other Phase Symptoms Tracker  
@@ -133,7 +133,13 @@ The data from both sequences of questions are then sent to the worksheet.
 
 #### View Your Symptoms  
 
-From the dashboard, the user is provided with the option to view the symptoms they have logged to date. At the moment and for the purpose of this project, as long as you are registered and logged in with any valid details, the data viewed is all the same as it is linked via API to the two worksheets, so of course the data isn't personalised! In future development the data would be unique to each user.
+From the dashboard, the user is provided with the option to view the symptoms they have logged to date.
+
+![View-data-info](./assets/README%20screenshots/view-data-1.png)
+
+![View-data-table](./assets/README%20screenshots/view-data-2.png)
+
+At the moment and for the purpose of this project, as long as you are registered and logged in with any valid details, the data viewed is all the same as it is linked via API to the two worksheets, so of course the data isn't personalised! In future development the data would be unique to each user.
 
 ### Future Features to Implement  
 
@@ -151,6 +157,24 @@ I would also an option for the user to add any notes along the way regarding the
 
 For the purpose of this project, there isn't a high level of security in terms of securing user data. For example when the user enters their password at the register and login stages, it can be seen on the screen.
 
+## Data Model
+
+### Google Sheets
+
+This application uses Google Sheets to store data that has been inputted by the user.
+
+There are three worksheets:
+
+- One to store data input by the user if they select that they are at the menstrual phase of their cycle.
+
+![menstrual_phase_worksheet](./assets/README%20screenshots/menstrual-phase-worksheet.png)
+
+- One to store data input by the user if they select that they are at any other phase in their cycle.
+
+![other_phase_worksheet](./assets/README%20screenshots/other-phase-worksheet.png)
+
+- A final worksheet contains user login details including username and the hashed password which is sent to the worksheet when the user registers.
+
 ## Technologies and Libraries Used  
 
 - Gitpod was used to develop the programme.
@@ -160,7 +184,9 @@ For the purpose of this project, there isn't a high level of security in terms o
 - [Werkzeug](https://werkzeug.palletsprojects.com/en/2.1.x/) was used to create a password hash for the register user aspect of the programme with the data sent to a Google worksheet.
 - [Colorama](https://pypi.org/project/colorama/) was used to add colour to the text in the programme.
 - [Tabulate](https://pypi.org/project/tabulate/) was used to create the table that presents the users data.
-
+- *time* and *sys* libraries to create a typing effect for print and input statements.
+- *os* library to clear the screen between the introduction and the menu loading.
+- *datetime* module to take the date that the user inputs data to send to the menstrual_phase and other_phases worksheets.
 
 ## Testing  
 
@@ -169,22 +195,40 @@ A lot of testing took place throughout the duration of building this project! I 
 Throughout the development of the programme, I continuously used print statements at various stages to make sure each step was working. I also tested for errors by inputting incorrect data along the way, for example for each question asked, to ensure no errors were triggered and if they were, I created statements as feedback to the user.
 PIC EXAMPLE
 
-### PEP8
+### PEP8 Validation
 
 All code has been passed through the PEP8 online checker with no warnings or errors.
 
 ![PEP8](./assets/README%20screenshots/PEP8-validation.png)
 
+### Lighthouse Testing
+
+I ran Google Lighthouse testing in an incognito window and scores well and apart from SEO scoring which was 89/100, scores are between 90 and 100. However, this application is built purely with Python and I didn't create an HTML file to store meta tags for the site.
+
+Accessibility scores high at 97/100 and apart from the Heroku *Run Program* button, background and foreground colors have a sufficient contrast ratio.
+
+![Lighthouse](./assets/README%20screenshots/lighthouse.png)
+
 ## Bugs  
 
-- **Colorama light colours not showing on deployed site**  
-  - To add some visuals to the questions asking the user to choose their pain and flow level on a scale, I initially used four colours  
+Bugs and errors encountered during development were solved through using print statements and testing along the way.
+
+- To add some visuals to the questions asking the user to choose their pain and flow level on a scale, I initially used four colours: *LIGHTMAGENTA_EX, LIGHTRED_EX, RED, LIGHTWHITE_EX AND WHITE* These worked well in the terminal and provided a gradient effect which helped illustrate a scale for the questions regarding "pain level" and "flow level".
+
+  - Gitpod
+  ![colorama-scale](./assets/README%20screenshots/terminal-scale-colorama.png)
+
+  - Heroku
+  ![heroku-scale](assets/README%20screenshots/heroku-scale-colorama.png)
+
+  However, once deployed to CLI, on the scale, only the white and red were visible! I couldn't find an answer online however, I decided it still provided the effect I was looking for.
+
+Other fixed bugs include:
 
 - I had some issues after continuing an else statement in a while loop. It ran an infinite loop of the else print statement.  
-  
+
 - When a user tried to log in, I had an initial problem where if the username wasn't stored in the worksheet, it threw an AttributeError rather than the print message in the else statement to request a valid username. Through tutor support assistance this issue was solved.
 
-## Development  
 
 ## Deployment  
 
@@ -192,9 +236,51 @@ All code has been passed through the PEP8 online checker with no warnings or err
 
 To deploy to Heroku, the following steps are to be followed:
 
-1. 
+1. Log in to Heroku and navigate to your dashboard.
+
+2. Select "New" at the top right-hand corner.
+
+3. Select "Create new app".
+
+4. Choose a unique name for your app, select your region and click "create app".
+
+5. Select "Settings" and click "Reveal Config Vars".
+
+6. Create two config vars. For the first one, input "PORT" and "8000" as one, then click add. In the other, input "CREDS" and the content of your Google Sheet API creds file as the other, click add.
+
+7. Click "Add buildpack".
+
+8. Add "nodejs" and "python" from the list and click "Save". Make sure Python is the first buildpack.
+
+9. From the tabs at the top, select "Deploy".
+
+10. Select "GitHub" from Deployment methods.
+
+11. Click "Connect to GitHub".
+
+12. Search for the GitHub repository by name you gave it.
+
+13. Choose either "Enable Automatic Deploys" or "Deploy Branch" to enable manual deploys.
+
+14. Once loaded, click "View" to view the deployed site.
+
+There was an issue a few days before my project submission deadline with GitHub announcing that a number of security tokens had been compromised in a security breach. As a result, I was unable to deploy from the Heroku dashboard. As I had manual deploys enabled, I had to link my app to my Gitpod terminal and deploy from the terminal.
+
+To do this I took the following steps passed on from Code Institute:
+
+1. Run the command: *heroku login -i*
+2. Log in with email and Heroku password.
+3. Run the command: *heroku git:remote -a cycle-changes-tracker*.
+4. To deploy, run the command: *git push heroku main*
+
 ## Credits  
 
+### Content
+
 - I used this article from [101 Computing](https://www.101computing.net/python-typing-text-effect/) to implement a typing effect on print and input statements as I believe it provided a nice flow to the programme.  
-  
+
+- I used this [Stack Overflow article](https://stackoverflow.com/questions/69472788/how-to-get-columns-titles-from-googlesheets-to-print-in-python) to help me build a table with headings displaying user data from the Google worksheet using Tabulate.
+
+## Acknowledgements  
+
 - Huge thank you for the help and support from my amazing mentor Richard Wells as well as tutor support who provided a lot of assistance throughout building this project when I got stuck!  
