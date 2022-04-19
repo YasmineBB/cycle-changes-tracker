@@ -198,10 +198,10 @@ def register():
     user = {}
 
     user['username'] = input(Fore.LIGHTMAGENTA_EX + 'Please enter a' +
-                             ' username: \n' + Fore.RESET)
+                             ' username: \n\n' + Fore.RESET)
     user['password'] = generate_password_hash(input(Fore.LIGHTMAGENTA_EX +
                                                     '\nPlease enter a' +
-                                                    ' password: \n' +
+                                                    ' password: \n\n' +
                                                     Fore.RESET))
     password = user['password']
     register_user(user)
@@ -669,3 +669,4 @@ def main():
     update_any_other_phases(any_other_phases)
 
 main()
+

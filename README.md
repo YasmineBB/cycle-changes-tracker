@@ -6,7 +6,6 @@
 
 [Cycle Changes Tracker](https://cycle-changes-tracker.herokuapp.com/)
 
-
 ## Table of Contents  
 <!-- TOC -->
 
@@ -22,7 +21,7 @@
   - [Logic](#logic)
   - [Features](#features)
     - [Current Features](#current-features)
-      - [Introduction](#introduction-1)
+      - [Run Program](#run-program)
       - [Main Menu](#main-menu)
       - [Register](#register)
       - [Login](#login)
@@ -50,9 +49,11 @@
 <!-- /TOC -->
 ## Introduction  
 
-Cycle Changes Tracker is a Command Line Interface programme developed to help women track their symptoms in order to monitor changes to their cycle upon changing or stopping their method of birth control.  
+Cycle Changes Tracker is a Command Line Interface application developed to help women track their symptoms in order to monitor changes to their cycle upon changing or stopping their method of birth control.
 
-This programme runs in a Command Line Interface and has been developed with Python.
+This application runs in a Command Line Interface and has been developed with Python.
+
+I drew upon my own experience as well as that of friends and many other women who face or have faced challenges that come with their menstrual cycle when developing Cycle Changes Tracker. It can be difficult to find what works for each individual as one method that works for one person may not work at all for another, and it can be a long process of testing and trialing different methods. Tracking symptoms is an important approach to take and the concept of Cycle Changes Tracker aims to assist in supporting women along their journey.
 
 ## User Experience  
 
@@ -68,43 +69,50 @@ Once the change has been made, it is important to monitor and track changes in t
 
 ### User Stories  
 
-Below are some scenarios a user may find themselves in which would using the Cycle Changes Tracker may prove helpful.  
+Below are some of many scenarios a user may find themselves in which using the Cycle Changes Tracker may prove helpful.  
 
 - *I am changing from a Copper IUD to a Hormonal IUD due to experiencing severe pain during my menstrual cycle and want to track any changes in my symptoms to feedback to my Gynaecologist.*  
   
-- *I am experimenting stopping my birth control for a period of time as suggested by my Gynaecologist. She has advised me to monitor any changes to my menstrual flow and pain experienced to feed back to her after 3 months.*  
+- *I am experimenting stopping my birth control for a period of time as suggested by my Gynaecologist. They have advised me to monitor any changes to my menstrual flow and pain experienced to feed back to them after 3 months.*  
   
 - *I am starting birth control as a means of pain management and need to track my symptoms so, if required to change in the future, I can find the method that works best for me.*  
 
 #### First Time User
 
-- I want to be able to easily understand what the programme is about.  
+- *I want to be able to easily understand what the programme is about.*
 
-- I want to be able to run through the programme to see how it works before committing to registering.  
+- *I want to be able to run through the programme to see how it works before committing to registering.*
 
-- I want to be asked questions related symptoms during my cycle that I can track and feedback to my Gynaecologist.  
+- *I want to be asked questions related to the symptoms I experience during my cycle.*
 
 #### Returning User
 
-- I want to be able to log in.  
+- *I want to be able to log in.* 
 
-- I want to be able to log my symptoms intuitively.
+- *I want to be able to log my symptoms intuitively.*
 
-- I want to be able to view all the symptoms I have logged to date.  
+- *I want to be able to view all the symptoms I have logged to date and be presented with data that I can analyse and feed back to my Gynaecologist.*
 
 ## Logic  
 
+I created a flowchart to help me plan out the program and to help keep me on track during development which was really useful for me. The flowchart pretty much represents how the programme is run. 
 
+![Flowchart](./assets/README%20screenshots/Flowchart.png)
 
-## Features  
+There are consistent print statements throughout the application providing feedback to the user at each stage. The user is also able to exit or log out at each stage, for example after they have registered, logged in or once they have viewed the data from the dashboard.
+
+![Login-feedback](./assets/README%20screenshots/log%20in%20feedback.png)
+## Features
 
 ### Current Features  
 
-#### Introduction  
+#### Run Program
 
-![title](./assets/README%20screenshots/start-up.png)
+![Title](./assets/README%20screenshots/start-up.png)
 
-At the start-up point once the program is run, a title appears followed by an introduction. A message then is printed to notify the user that the menu is loading.
+At the start-up point once the program is run, a title appears followed by an introduction. This introduction addresses the needs of the first time user goal: *"I want to be able to easily understand what the programme is about."*
+
+A message then is printed to notify the user that the menu is loading.
 
 #### Main Menu  
 
@@ -149,9 +157,13 @@ If the user chooses to go to their dashboard, they are presented with the follow
 
 Again, the user has the option to leave the programme if they wish.
 
+This log in system addresses the returning user goal: *"I want to be able to log in."*
+
 #### Continue as Guest
 
-I provided an option for the user to continue as guest in order to give the user an idea of what they will get if they are hesitant in registering.  By selecting 'Continue as Guest' the user is taking through the application in the same way, just without logging in or registering first.
+I provided an option for the user to continue as guest to give the user an idea of what they will get if they are hesitant in registering.  By selecting 'Continue as Guest' the user is taken through the application in the same way, just without logging in or registering first.
+
+This addresses the first time user goal of *"I want to be able to run through the programme to see how it works before committing to registering."*
 
 #### Menstruation Symptoms Tracker
 
@@ -161,16 +173,18 @@ Once the user selects to proceed to log their symptoms, they are asked:
 
 Upon the user selecting (Y) to being on their period, they are then presented with a selection of questions related to their menstrual phase.  
 
-They are asked questions regarding the level of pain and flow they are experiencing and whether they have experienced that level before. At each question the user input is validated, and error messages are presented if the wrong data is input.
+They are asked questions regarding the level of pain and flow they are experiencing and whether they have experienced that level before. At each question the user input is validated, and error messages are presented if an incorrect response is input.
 
 ![Error1](./assets/README%20screenshots/error-example-mp.png)
 
 
 #### Any Other Phase Symptoms Tracker  
 
-Upon selecting 'N' to being on their period, the user is provided a sequence of questions related to any other symptoms they may be experiencing. I have included only two of the many symptoms women can experience, which are regarding spotting and pain. The user is asked if they are experiencing and pain or spotting and if they have experienced those things before.
+Upon selecting 'N' to being on their period, the user is provided a sequence of questions related to any other symptoms they may be experiencing. I have included only two of the many symptoms women can experience, which are regarding spotting and pain. The user is asked if they are experiencing any pain or spotting and if they have experienced those things before at that stage.
 
-The data from both sequences of questions are then sent to the worksheet.
+The data from both sequences of questions are then sent to the relevant worksheet.
+
+Both of these sequences of questions address the first time user goal: *"I want to be asked questions related to the symptoms I experience during my cycle."* As well as the returning user goal: *"I want to be able to log my symptoms intuitively."*
 
 #### View Your Symptoms  
 
@@ -179,6 +193,8 @@ From the dashboard, the user is provided with the option to view the symptoms th
 ![View-data-gif](https://media.giphy.com/media/2JJGvHj15yVDah8UGt/giphy.gif)
 
 ![View-data-gif2](https://media.giphy.com/media/KCW9tjzBch33Ofy009/giphy.gif)
+
+Before each table of data is presented, there is a confirmation of what each heading term means, as they have been shortened to fit the table but are still meaningful, and what question in the application they refer to.
 
 At the moment and for the purpose of this project, as long as you are registered and logged in with any valid details, the data viewed is all the same as it is linked via API to the two worksheets, so of course the data isn't personalised! In future development the data would be unique to each user.
 
@@ -192,11 +208,11 @@ Alongside tracking pain and flow level, another feature to implement would be a 
 
 #### Notepad  
 
-I would also an option for the user to add any notes along the way regarding their symptoms to make it more personalised.
+I would also provide an option for the user to add any notes along the way regarding their symptoms to make it more personalised.
 
 #### Security of Data
 
-For the purpose of this project, there isn't a high level of security in terms of securing user data. For example when the user enters their password at the register and login stages, it can be seen on the screen.
+For the purpose of this project, apart from generating a password hash there isn't a high level of security in terms of securing user data on screen, as I wasn't able to implement password masking for this project. For example when the user enters their password at the register and login stages, it can be seen on the screen. In the future I would implement a method to mask secure data such as passwords.
 
 ## Data Model
 
@@ -218,6 +234,7 @@ There are three worksheets:
 
 ## Technologies and Libraries Used  
 
+- [GitHub](https://github.com/YasmineBB/cycle-changes-tracker) was used to create the repository for this project.
 - Gitpod was used to develop the programme.
 - [Heroku](https://id.heroku.com/login) was used to deploy the site.
 - [PEP8 online](http://pep8online.com/) was used to validate my python code.
@@ -227,14 +244,13 @@ There are three worksheets:
 - [Tabulate](https://pypi.org/project/tabulate/) was used to create the table that presents the users data.
 - *time* and *sys* libraries to create a typing effect for print and input statements.
 - *os* library to clear the screen between the introduction and the menu loading.
-- *datetime* module to take the date that the user inputs data to send to the menstrual_phase and other_phases worksheets.
+- *datetime* module to take the date that the user inputs data to send to the menstrual_phase and other_phase worksheets.
 
 ## Testing  
 
 A lot of testing took place throughout the duration of building this project! I planned a lot more for this project and I found I had less of a tendency to procrastinate on front end issues as in previous projects! Having a flowchart also helped me stay on track.  
 
 Throughout the development of the programme, I continuously used print statements at various stages to make sure each step was working. I also tested for errors by inputting incorrect data along the way, for example for each question asked, to ensure no errors were triggered and if they were, I created statements as feedback to the user.
-PIC EXAMPLE
 
 ### PEP8 Validation
 
@@ -244,7 +260,7 @@ All code has been passed through the PEP8 online checker with no warnings or err
 
 ### Lighthouse Testing
 
-I ran Google Lighthouse testing in an incognito window and scores well and apart from SEO scoring which was 89/100, scores are between 90 and 100. However, this application is built purely with Python and I didn't create an HTML file to store meta tags for the site.
+I ran Google Lighthouse testing in an incognito window, and it scores well. Apart from the SEO score which was 89/100, scores are between 90 and 100. However, this application is built purely with Python and I didn't create an HTML file to store meta tags for the site.
 
 Accessibility scores high at 97/100 and apart from the Heroku *Run Program* button, background and foreground colors have a sufficient contrast ratio.
 
@@ -252,24 +268,13 @@ Accessibility scores high at 97/100 and apart from the Heroku *Run Program* butt
 
 ## Bugs  
 
-Bugs and errors encountered during development were solved through using print statements and testing along the way.
+Bugs and errors encountered during development were solved through using print statements and testing along the way at every stage!
 
-- To add some visuals to the questions asking the user to choose their pain and flow level on a scale, I initially used four colours: *LIGHTMAGENTA_EX, LIGHTRED_EX, RED, LIGHTWHITE_EX AND WHITE* These worked well in the terminal and provided a gradient effect which helped illustrate a scale for the questions regarding "pain level" and "flow level".
+Some other fixed bugs include:
 
-  - Gitpod
-  ![colorama-scale](./assets/README%20screenshots/terminal-scale-colorama.png)
+- I had some issues after continuing an else statement in one of my while loops. It ran an infinite loop of the else print statement, but this was solved.
 
-  - Heroku
-  ![heroku-scale](assets/README%20screenshots/heroku-scale-colorama.png)
-
-  However, once deployed to CLI, on the scale, only the white and red were visible! I couldn't find an answer online however, I decided it still provided the effect I was looking for.
-
-Other fixed bugs include:
-
-- I had some issues after continuing an else statement in a while loop. It ran an infinite loop of the else print statement.  
-
-- When a user tried to log in, I had an initial problem where if the username wasn't stored in the worksheet, it threw an AttributeError rather than the print message in the else statement to request a valid username. Through tutor support assistance this issue was solved.
-
+- When a user tried to log in, I had an initial problem where if the username wasn't stored in the worksheet, it threw an error rather than the print message in the else statement to request a valid username. Through tutor support assistance this issue was solved.
 
 ## Deployment  
 
@@ -283,7 +288,7 @@ To deploy to Heroku, the following steps are to be followed:
 
 3. Select "Create new app".
 
-4. Choose a unique name for your app, select your region and click "create app".
+4. Choose a unique name for your app, select your region and click "Create app".
 
 5. Select "Settings" and click "Reveal Config Vars".
 
@@ -299,15 +304,15 @@ To deploy to Heroku, the following steps are to be followed:
 
 11. Click "Connect to GitHub".
 
-12. Search for the GitHub repository by name you gave it.
+12. Search for the GitHub repository by the name you gave it.
 
 13. Choose either "Enable Automatic Deploys" or "Deploy Branch" to enable manual deploys.
 
 14. Once loaded, click "View" to view the deployed site.
 
-There was an issue a few days before my project submission deadline with GitHub announcing that a number of security tokens had been compromised in a security breach. As a result, I was unable to deploy from the Heroku dashboard. As I had manual deploys enabled, I had to link my app to my Gitpod terminal and deploy from the terminal.
+There was an issue a few days before my project submission deadline with GitHub announcing that a number of security tokens had been compromised in a security breach. Due to changes they had made as a result, I was unable to deploy from the Heroku dashboard. As I had manual deploys enabled, I had to link my app to my Gitpod terminal and deploy from the terminal.
 
-To do this I took the following steps passed on from Code Institute:
+To do this I took the following steps kindly passed on by the Code Institute team:
 
 1. Run the command: *heroku login -i*
 2. Log in with email and Heroku password.
@@ -324,4 +329,4 @@ To do this I took the following steps passed on from Code Institute:
 
 ## Acknowledgements  
 
-- Huge thank you for the help and support from my amazing mentor Richard Wells as well as tutor support who provided a lot of assistance throughout building this project when I got stuck!  
+- Huge thank you for the help and support from my amazing mentor Richard Wells as well as tutor support who provided great assistance throughout building this project when I got stuck!  
