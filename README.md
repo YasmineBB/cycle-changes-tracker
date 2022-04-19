@@ -42,13 +42,14 @@ Below are some scenarios a user may find themselves in which would using the Cyc
 - I want to be able to run through the programme to see how it works before committing to registering.  
 
 - I want to be asked questions related symptoms during my cycle that I can track and feedback to my Gynaecologist.  
- 
 
 #### Returning User
 
 - I want to be able to log in.  
 
-- I want to be able to see data of the symptoms I have logged.  
+- I want to be able to log my symptoms intuitively.
+
+- I want to be able to view all the symptoms I have logged to date.  
 
 ## Logic  
 
@@ -62,10 +63,8 @@ Below are some scenarios a user may find themselves in which would using the Cyc
 
 ![title](./assets/README%20screenshots/Title.png)
 
-At the start up point once the program is run, a title appears followed by an introduction to the application.
- <!-- which, at the end, prompts the user to enter their name and welcomes them. -->
+At the start-up point once the program is run, a title appears followed by an introduction to the application. A message is printed to notify the user that the menu is loading.
 
-<!-- ![Welcome](./assets/README%20screenshots/Welcome%20message.png) -->
 
 #### Main Menu  
 
@@ -77,17 +76,22 @@ The user is then taken to the main menu where they are presented with three opti
 2. *Register*
 3. *Continue as Guest*
 
+
+#### Register  
+
+The user has the option to register their details, which are then sent to a Google worksheet using gspread. The user is requested to enter a username and password. I have used the Werkzeug library to generate a password hash for the password the user enters. This hashes the password and stores it in a Google worksheet that contains user details.
+
+Once the user registers their details they receive a welcome message and confirmation that they are now logged in. They are then presented with options to proceed to log their symptoms, to view their dashboard or to log out.
+
+I wanted to make sure the user always has a choice in how to proceed at each stage so once they have registered, and logged in, they are still given the option to log out if they wish.
+
 #### Login  
 
-Upon entering (1), the user is prompted to log in with the details used when they registered. Once logged in, the user is welcomed and provided an option to proceed to logging their symptoms, or to go to the menu. This menu is different to the main menu and gives the user three options:
+Upon selecting to log in, the user is prompted to log in with the details entered when they registered. Once logged in, the user is welcomed and provided with the option to proceed to logging their symptoms, go to the dashboard or log out.
 
-1. *About*
-2. *Log Symptoms*
-3. *Exit*
+The username and password entered are checked against the Google worksheet and an error message is presented if they can't be validated.  
 
-I wanted to make sure the user always has a choice in how to proceed at each stage so once they have logged in, they are still given the option to exit if they wish.
-
-#### Register
+PIC
 
 #### Continue as Guest
 
@@ -95,15 +99,26 @@ I provided an option for the user to continue as guest in order to give the user
 
 #### Menstruation Symptoms Tracker
 
+Once the user selects to proceed to log their symptoms, they are asked:
+
+- *Are you on your period today? Y / N*
+
 Upon the user selecting (Y) to being on their period, they are then presented with a selection of questions related to their menstrual phase.  
 
-They are asked questions regarding the level of pain and flow they are experiencing and whether they have experienced that level before.
+They are asked questions regarding the level of pain and flow they are experiencing and whether they have experienced that level before. At each question the user input is validated and error messages are presented if the wrong data is input.
+
+PIC
 
 
 #### Any Other Phase Symptoms Tracker  
 
 Upon selecting 'N' to being on their period, the user is provided a sequence of questions related to any other symptoms they may be experiencing. I have included only two of the many symptoms women can experience, which are regarding spotting and pain. The user is asked if they are experiencing and pain or spotting and if they have experienced those things before.
 
+The data from both sequences of questions are then sent to the worksheet.
+
+#### View Your Symptoms  
+
+From the dashboard, the user is provided with the option to view the symptoms they have logged to date. 
 
 ### Future Features to Implement  
 
@@ -117,6 +132,10 @@ Alongside tracking pain and flow level, another feature to implement would be a 
 
 I would also an option for the user to add any notes along the way regarding their symptoms to make it more personalised.
 
+#### Security of Data
+
+For the purpose of this project, there isn't a high level of security in terms of securing user data. For example when the user enters their password at the register and login stages, 
+
 ## Technologies and Libraries Used  
 
 - Gitpod was used to develop the programme.
@@ -124,7 +143,8 @@ I would also an option for the user to add any notes along the way regarding the
 - [PEP8 online](http://pep8online.com/) was used to validate my python code.
 - [gspread](https://pypi.org/project/gspread/) was used to connect my code to Google Sheets where user data is stored.
 - [Werkzeug](https://werkzeug.palletsprojects.com/en/2.1.x/) was used to create a password hash for the register user aspect of the programme with the data sent to a Google worksheet.
-- [Colorama](https://pypi.org/project/colorama/) was used to add colour to the programme.
+- [Colorama](https://pypi.org/project/colorama/) was used to add colour to the text in the programme.
+- [Tabulate](https://pypi.org/project/tabulate/) was used to create the table that presents the users data.
 
 
 ## Testing  
@@ -143,9 +163,11 @@ ADD PIC
 ## Bugs  
 
 - **Colorama light colours not showing on deployed site**  
-  - To add some visuals to the questions asking the user to choose their pain and flow level on a scale, I initially used four colours
-- I had some issues after continuing an else statement in a while loop. It ran an infinite loop of the else print statement.
-- When a user tried to log in, I had an initial problem where if the username wasn't stored in the worksheet, it threw an AttributeError rather than the print message in the else statement to request a valid username. Through tutor support assistance 
+  - To add some visuals to the questions asking the user to choose their pain and flow level on a scale, I initially used four colours  
+
+- I had some issues after continuing an else statement in a while loop. It ran an infinite loop of the else print statement.  
+  
+- When a user tried to log in, I had an initial problem where if the username wasn't stored in the worksheet, it threw an AttributeError rather than the print message in the else statement to request a valid username. Through tutor support assistance this issue was solved.
 
 ## Development  
 
@@ -153,9 +175,11 @@ ADD PIC
 
 ### Heroku  
 
+To deploy to Heroku, the following steps are to be followed:
+
+1. 
 ## Credits  
 
 - I used this article from [101 Computing](https://www.101computing.net/python-typing-text-effect/) to implement a typing effect on print and input statements as I believe it provided a nice flow to the programme.  
   
 - Huge thank you for the help and support from my amazing mentor Richard Wells as well as tutor support who provided a lot of assistance throughout building this project when I got stuck!
-
