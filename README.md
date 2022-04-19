@@ -133,6 +133,11 @@ Once the user registers their details they receive a welcome message and confirm
 
 I wanted to make sure the user always has a choice in how to proceed at each stage so once they have registered, and logged in, they are still given the option to log out if they wish.
 
+To access features such as View Your Symptoms, I recommend registering. However the following details can be entered to log in to test!
+
+- Username - user
+- Password - 123
+
 #### Login  
 
 Upon selecting to log in, the user is prompted to log in with the details entered when they registered.
