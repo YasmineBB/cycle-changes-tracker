@@ -296,8 +296,9 @@ def login_menu(user):
         elif login_menu_option == '3':
             typingPrint("\nHope to see you back soon, " +
                         Fore.LIGHTMAGENTA_EX +
-                        f"{user.capitalize()}!\n\n")
-            typingPrint('Logging out...\n\n')
+                        f"{user.capitalize()}!\n\n" +
+                        Fore.RESET)
+            typingPrint('Logging out...\n\n\n')
             time.sleep(1)
             return menu()
         else:
@@ -354,7 +355,7 @@ def menstrual_phase():
 
         if pain_scale.isdigit() and int(pain_scale) > 0:
             typingPrint("\nSorry to hear you're experiencing pain today. " +
-                        "It's great that you're\logging symptoms, lets hope" +
+                        "It's great that you're\nlogging symptoms, lets hope" +
                         " to change that.\n\n")
             break
         elif pain_scale.isdigit() and int(pain_scale) == 0:
@@ -427,7 +428,7 @@ def update_menstrual_phase(menstrual_phase):
     new_worksheet.append_row([x for x in menstrual_phase.values()])
     typingPrint('Great! Your symptoms have been updated!\n\n')
     typingPrint("Thank you for logging your symptoms today! We'll return you" +
-                " to the main\menu now...\n\n\n")
+                " to the main\nmenu now...\n\n\n")
     time.sleep(1)
     return menu()
 
@@ -626,7 +627,7 @@ def get_data(username):
                         Fore.LIGHTMAGENTA_EX +
                         f"{username.capitalize()}!\n\n" +
                         Fore.RESET)
-            typingPrint('\nLogging out...\n\n\n\n')
+            typingPrint('\nLogging out...\n\n\n\n\n')
             time.sleep(1)
             return menu()
         else:
