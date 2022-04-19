@@ -9,7 +9,7 @@ View the app [here](https://cycle-changes-tracker.herokuapp.com/).
 
 ## Introduction  
 
-Cycle Changes Tracker is a Command Line Interface programme developed to help women track changes to their cycle upon changing their method of birth control.  
+Cycle Changes Tracker is a Command Line Interface programme developed to help women track changes to their cycle upon changing or stopping their method of birth control.  
 
 This programme runs in a Command Line Interface and has been developed with Python.
 
@@ -61,10 +61,9 @@ Below are some scenarios a user may find themselves in which would using the Cyc
 
 #### Introduction  
 
-![title](./assets/README%20screenshots/Title.png)
+![title](./assets/README%20screenshots/start-up.png)
 
-At the start-up point once the program is run, a title appears followed by an introduction to the application. A message is printed to notify the user that the menu is loading.
-
+At the start-up point once the program is run, a title appears followed by an introduction. A message then is printed to notify the user that the menu is loading.
 
 #### Main Menu  
 
@@ -87,11 +86,27 @@ I wanted to make sure the user always has a choice in how to proceed at each sta
 
 #### Login  
 
-Upon selecting to log in, the user is prompted to log in with the details entered when they registered. Once logged in, the user is welcomed and provided with the option to proceed to logging their symptoms, go to the dashboard or log out.
+Upon selecting to log in, the user is prompted to log in with the details entered when they registered.
 
-The username and password entered are checked against the Google worksheet and an error message is presented if they can't be validated.  
+The username and password entered are checked against the Google worksheet and an error message is presented if both the username and password can't be validated.  
 
-PIC
+- User Validation
+![Login](./assets/README%20screenshots/login.png)
+
+- Password validation
+![Login-2](./assets/README%20screenshots/login-2.png)
+
+Once logged in, the user is welcomed and provided with the option to proceed to logging their symptoms, go to the dashboard or log out.
+
+If the user chooses to go to their dashboard, they are presented with the following options:
+
+1. View the symptoms logged to date
+2. Log their symptoms
+3. Log out
+
+![Dashboard](./assets/README%20screenshots/dashboard.png)
+
+Again, the user has the option to leave the programme if they wish.
 
 #### Continue as Guest
 
@@ -156,9 +171,9 @@ PIC EXAMPLE
 
 ### PEP8
 
-All code has been passed through the PEP8 online checker with no errors.  
+All code has been passed through the PEP8 online checker with no warnings or errors.
 
-ADD PIC
+![PEP8](./assets/README%20screenshots/PEP8-validation.png)
 
 ## Bugs  
 

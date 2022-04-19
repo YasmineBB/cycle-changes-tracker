@@ -62,21 +62,22 @@ def intro():
     time.sleep(1)
 
     typingPrint('                      Welcome to ' + Fore.LIGHTMAGENTA_EX +
-                'Cycle Changes Tracker' + Fore.RESET + '!          \
+                'Cycle Changes Tracker' + Fore.RESET + '!     \
                 \n\n')
     time.sleep(1)
-    typingPrint('            We know the journey into finding what works for you\n                and' +
+    typingPrint('            We know the journey into finding what works for' +
+                ' you\n                and' +
                 ' your body can be a complicated one...\n\n')
-    typingPrint("    Starting a new method of birth control or stopping it can be" +
-                " challenging...\n\n")
+    typingPrint("    Starting a new method of birth control or stopping it" +
+                " can be challenging...\n\n")
     time.sleep(1)
     typingPrint("          So we are here to support you all the way" +
-                " by helping you log\n                    and track changes to your" +
-                " symptoms.\n\n")
+                " by helping you log\n                    and track changes" +
+                " to your symptoms.\n\n")
     time.sleep(1)
     typingPrint('\n                                Menu loading...\n\n')
     time.sleep(1)
-    # return clearScreen()
+    return clearScreen()
 
     menu()
 
@@ -118,18 +119,15 @@ def menu():
             time.sleep(1)
             typingPrint('\nTaking you to Login...\n\n')
             return login()
-            break
         elif menu_option == '2':
             time.sleep(1)
             typingPrint('\nTaking you to Register...\n\n')
             return register()
-            break
         elif menu_option == '3':
             time.sleep(1)
             typingPrint("\nGreat, we'll get started. You'll have the option" +
                         " to register at the end if you wish!\n\n")
             return cycle_phase()
-            break
         else:
             print(f'{menu_option} is not a valid option!\n\n')
             continue
@@ -150,7 +148,7 @@ def login():
         match = user_worksheet.find(username)
         password = user_worksheet.cell(match.row, 2)
     else:
-        print('Username is not valid. please try again...\n\n')
+        print('Username is not valid. Please try again...\n\n')
         return login()
 
     while True:
@@ -165,8 +163,8 @@ def login():
                                       '(L) ' + Fore.RESET + 'to proceed to' +
                                       ' logging your symptoms, ' +
                                       Fore.LIGHTMAGENTA_EX + '(D) ' +
-                                      Fore.RESET + 'to go to your' +
-                                      ' dashboard or ' + Fore.LIGHTMAGENTA_EX +
+                                      Fore.RESET + 'to go to your\n' +
+                                      'dashboard or ' + Fore.LIGHTMAGENTA_EX +
                                       '(E)' + Fore.RESET + ' to log out: \n\n')
                 if proceed == 'l' or proceed == 'L':
                     typingPrint("\nGreat, we'll get started!\n\n")
@@ -176,7 +174,6 @@ def login():
                     time.sleep(1)
                     typingPrint('\nLoading dashboard...\n\n')
                     return login_menu(username)
-                    return clearScreen()
                     break
                 elif proceed == 'e' or proceed == 'E':
                     time.sleep(1)
@@ -192,7 +189,6 @@ def login():
         else:
             print('Password is incorrect. Please try again...')
             return login()
-    # print(password.value)
 
 
 def register():
@@ -204,24 +200,11 @@ def register():
 
     user['username'] = input(Fore.LIGHTMAGENTA_EX + 'Please enter a' +
                              ' username: \n' + Fore.RESET)
-
-    # while True:
     user['password'] = generate_password_hash(input(Fore.LIGHTMAGENTA_EX +
                                                     '\nPlease enter a' +
                                                     ' password: \n' +
                                                     Fore.RESET))
     password = user['password']
-    # print(password)
-
-        # user['email'] = input(Fore.LIGHTMAGENTA_EX + 'Please enter your email' +
-        #                   ' address: \n' + Fore.RESET)
-        # if len(password) >6:
-        #     break
-        # else:
-        #     print('\nPlease choose a password between 6 and 18 characters long...\n')
-        #     continue
-    # password = user['password']
-
     register_user(user)
     username = user['username']
 
@@ -236,36 +219,35 @@ def register_user(user):
 
     user_worksheet = SHEET.worksheet('user_details')
     user_worksheet.append_row([x for x in user.values()])
-    typingPrint("\nLovely to meet you " + Fore.LIGHTMAGENTA_EX +
+    typingPrint("\nLovely to meet you, " + Fore.LIGHTMAGENTA_EX +
                 f"{user['username'].capitalize()}" + Fore.RESET +
-                "! Your details have been registered" +
+                "! \n\nYour details have been registered" +
                 " and you are now logged in...\n\n")
 
     while True:
-                proceed = typingInput('Please enter ' + Fore.LIGHTMAGENTA_EX +
-                                      '(L)' + Fore.RESET + ' to' +
-                                      ' log your symptoms, ' +
-                                      Fore.LIGHTMAGENTA_EX + '(D)' +
-                                      Fore.RESET + ' to view your' +
-                                      ' dashboard or ' +
-                                      Fore.LIGHTMAGENTA_EX + '(E) ' +
-                                      Fore.RESET + 'to log out:\n\n')
-                if proceed == 'l' or proceed == 'L':
-                    typingPrint("Great, we'll get started!\n\n")
-                    return cycle_phase()
-                elif proceed == 'd' or proceed == 'D':
-                    typingPrint('\nLoading dashboard...\n\n')
-                    return login_menu(user)
-                elif proceed == 'e' or proceed == 'E':
-                    typingPrint("\nHope to see you back soon, " +
-                                Fore.LIGHTMAGENTA_EX +
-                                f"{user['username'].capitalize()}!\n\n")
-                    typingPrint('\nLogging out...\n\n')
-                    time.sleep(1)
-                    return menu()
-                else:
-                    print(f'{proceed} is not a valid option!\n\n')
-    login_menu(user)
+        proceed = input('Please enter ' + Fore.LIGHTMAGENTA_EX +
+                        '(L)' + Fore.RESET + ' to' +
+                        ' log your symptoms, ' +
+                        Fore.LIGHTMAGENTA_EX + '(D)' +
+                        Fore.RESET + ' to view your ' +
+                        'dashboard or ' +
+                        Fore.LIGHTMAGENTA_EX + '(E) ' +
+                        Fore.RESET + 'to\nlog out:\n\n')
+        if proceed == 'l' or proceed == 'L':
+            typingPrint("Great, we'll get started!\n\n")
+            return cycle_phase()
+        elif proceed == 'd' or proceed == 'D':
+            typingPrint('\nLoading dashboard...\n\n')
+            return login_menu(user)
+        elif proceed == 'e' or proceed == 'E':
+            typingPrint("\nHope to see you back soon, " +
+                        Fore.LIGHTMAGENTA_EX +
+                        f"{user['username'].capitalize()}!\n\n")
+            typingPrint(Fore.RESET + '\nLogging out...\n\n\n\n')
+            time.sleep(1)
+            return menu()
+        else:
+            print(f'{proceed} is not a valid option!\n\n')
 
 
 def login_menu(user):
@@ -273,7 +255,8 @@ def login_menu(user):
     Menu shown once user has logged in.
     """
 
-    print(Fore.LIGHTMAGENTA_EX + '                                    ----')
+    print(Fore.LIGHTMAGENTA_EX + '\n\n                                    ' +
+          '----')
     print('                                  -------- ')
     print('                               ---- ' + Fore.WHITE + Style.BRIGHT +
           'MENU' + Fore.LIGHTMAGENTA_EX + Style.NORMAL + ' ----')
@@ -297,29 +280,26 @@ def login_menu(user):
 
     while True:
         login_menu_option = input('Please enter ' +
-                                        Fore.LIGHTMAGENTA_EX + '(1)' +
-                                        Fore.RESET + ' to view your ' +
-                                        'symptoms ' + Fore.LIGHTMAGENTA_EX +
-                                        '(2)' + Fore.RESET + ' to log your' +
-                                        ' symptoms or ' +
-                                        Fore.LIGHTMAGENTA_EX + '(3)' +
-                                        Fore.RESET + ' to log out: \n\n')
+                                  Fore.LIGHTMAGENTA_EX + '(1)' +
+                                  Fore.RESET + ' to view your ' +
+                                  'symptoms ' + Fore.LIGHTMAGENTA_EX +
+                                  '(2)' + Fore.RESET + ' to log your' +
+                                  ' symptoms or ' +
+                                  Fore.LIGHTMAGENTA_EX + '(3)' +
+                                  Fore.RESET + ' to\nlog out: \n\n')
         if login_menu_option == '1':
             typingPrint('\nTaking you to view the symptoms you have logged' +
                         ' to date...\n\n')
             return get_data(user)
-            break
         elif login_menu_option == '2':
             typingPrint('\nTaking you to log your symptoms...\n\n')
             return cycle_phase()
-            break
         elif login_menu_option == '3':
             typingPrint("\nHope to see you back soon, " +
                         Fore.LIGHTMAGENTA_EX +
-                        f"{user['username'].capitalize()}!\n\n")
+                        f"{user.capitalize()}!\n\n")
             time.sleep(1)
             return menu()
-            break
         else:
             print(f'{login_menu_option} is not a valid option!\n\n')
             continue
@@ -557,21 +537,22 @@ def get_data(username):
 
     typingPrint('Loading data...\n\n')
 
-    typingPrint(Fore.LIGHTMAGENTA_EX + 'Here are all the symptoms you have' +
-                ' logged to date during your Menstrual Phase: \n\n')
+    typingPrint(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + 'Here are all the' +
+                ' symptoms you have logged to date during your Menstrual' +
+                ' Phase: \n\n' + Style.NORMAL)
 
     time.sleep(1)
 
     print('\nDATE ' + Fore.RESET + '= Date symptoms were logged.\n')
     print(Fore.LIGHTMAGENTA_EX + 'P/S ' + Fore.RESET + '= The level of pain' +
           ' you logged on the pain scale between:\n'
-          '   0 = (No pain) and 10 = (Extremely Painful).\n')
+          '      0 = (No pain) and 10 = (Extremely Painful).\n')
     print(Fore.LIGHTMAGENTA_EX + 'PEBC ' + Fore.RESET + '= If you' +
           ' have experienced that level of pain before the change in' +
           ' your\nbirth control.\n')
     print(Fore.LIGHTMAGENTA_EX + 'F/L ' + Fore.RESET +
           '= The level of your flow you logged between:\n' +
-          '   0 (None) - (5) and Extremely Heavy.\n')
+          '      0 (None) - (5) and Extremely Heavy.\n')
     print(Fore.LIGHTMAGENTA_EX + 'FLEBC ' + Fore.RESET +
           '= If you have experienced that level of flow before' +
           ' the change in your birth control.\n')
@@ -588,9 +569,9 @@ def get_data(username):
 
     time.sleep(1)
 
-    typingPrint(Fore.LIGHTMAGENTA_EX + '\n\nHere are all the symptoms you' +
-                ' have logged to date at any other phase' +
-                ' in\nyour cycle: \n\n')
+    typingPrint(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + '\n\nHere are all the' +
+                ' symptoms you have logged to date at any other phase' +
+                ' in\nyour cycle: \n\n' + Style.NORMAL)
 
     time.sleep(1)
 
@@ -617,14 +598,15 @@ def get_data(username):
                    showindex=True,
                    tablefmt="grid",
                    stralign='center'))
-    
-    typingPrint("\nIt's great that you're logging your symptoms" +
-                f"{username.capitalize()}! Its important to" +
-                " track any changes and is a great step" +
+
+    typingPrint("\nIt's great that you're logging your symptoms " +
+                Fore.LIGHTMAGENTA_EX + f"{username.capitalize()}" +
+                Fore.RESET + "! Its important to" +
+                " track any changes\n and is a great step" +
                 " towards finding what works best for you.\n\n" +
                 "You can use this data when discussing your" +
                 " experience with your" +
-                "Gynaecologist or GP.")
+                " Gynaecologist or GP.")
 
     while True:
         leave_data = typingInput('\n\nPlease enter' + Fore.LIGHTMAGENTA_EX +
@@ -647,6 +629,7 @@ def get_data(username):
                         f"{username.capitalize()}!\n\n" +
                         Fore.RESET)
             typingPrint('\nLogging out...\n\n')
+            time.sleep(1)
             return menu()
         else:
             print(f'{leave_data} is not a valid option!\n\n')
@@ -680,9 +663,10 @@ def main():
     username = login()
     register_user(username)
     username = login()
-    update_any_other_phases(any_other_phases)
     username = register_user()
     get_data(username)
+    get_data(user)
     update_menstrual_phase(menstrual_phase)
+    update_any_other_phases(any_other_phases)
 
 main()
