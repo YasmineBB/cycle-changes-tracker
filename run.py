@@ -168,12 +168,10 @@ def login():
                 if proceed == 'l' or proceed == 'L':
                     typingPrint("\nGreat, we'll get started!\n\n")
                     return cycle_phase()
-                    break
                 elif proceed == 'd' or proceed == 'D':
                     time.sleep(1)
                     typingPrint('\nLoading dashboard...\n\n\n')
                     return login_menu(username)
-                    break
                 elif proceed == 'e' or proceed == 'E':
                     time.sleep(1)
                     typingPrint('\nSee you next time, ' +
@@ -203,7 +201,6 @@ def register():
                                                     '\nPlease enter a' +
                                                     ' password: \n\n' +
                                                     Fore.RESET))
-    password = user['password']
     register_user(user)
     username = user['username']
 
@@ -523,10 +520,9 @@ def update_any_other_phases(any_other_phases):
     new_worksheet.append_row([x for x in any_other_phases.values()])
     typingPrint('Great! Your symptoms have been updated!\n\n')
     typingPrint("Thank you for logging your symptoms today! We'll return" +
-                " you to the\main menu now...\n\n\n")
+                " you to the\nmain menu now...\n\n\n")
     time.sleep(1)
     return menu()
-    return clearScreen()
 
 
 def get_data(username):
@@ -616,7 +612,7 @@ def get_data(username):
                                  '\n\n')
         if leave_data == 'd' or leave_data == 'D':
             typingPrint('\nLoading dashboard...\n\n')
-            return login_menu(user)
+            return login_menu(username)
         elif leave_data == 'l' or leave_data == 'L':
             typingPrint("\nThank you " +
                         "for checking in with" +
@@ -661,12 +657,9 @@ def main():
 
     username = login()
     register_user(username)
-    username = login()
     username = register_user()
     get_data(username)
-    get_data(user)
     update_menstrual_phase(menstrual_phase)
     update_any_other_phases(any_other_phases)
 
 main()
-
