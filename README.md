@@ -1,15 +1,56 @@
 # Cycle Changes Tracker  
 
+![Start-screen](./assets/README%20screenshots/start-screen.png)
+
 ## Live Site  
 
 [Cycle Changes Tracker](https://cycle-changes-tracker.herokuapp.com/)
 
 
 ## Table of Contents  
+<!-- TOC -->
 
+- [Cycle Changes Tracker](#cycle-changes-tracker)
+  - [Live Site](#live-site)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [User Experience](#user-experience)
+    - [Target Audience](#target-audience)
+    - [User Stories](#user-stories)
+      - [First Time User](#first-time-user)
+      - [Returning User](#returning-user)
+  - [Logic](#logic)
+  - [Features](#features)
+    - [Current Features](#current-features)
+      - [Introduction](#introduction-1)
+      - [Main Menu](#main-menu)
+      - [Register](#register)
+      - [Login](#login)
+      - [Continue as Guest](#continue-as-guest)
+      - [Menstruation Symptoms Tracker](#menstruation-symptoms-tracker)
+      - [Any Other Phase Symptoms Tracker](#any-other-phase-symptoms-tracker)
+      - [View Your Symptoms](#view-your-symptoms)
+    - [Future Features to Implement](#future-features-to-implement)
+      - [Mood Tracker](#mood-tracker)
+      - [Notepad](#notepad)
+      - [Security of Data](#security-of-data)
+  - [Data Model](#data-model)
+    - [Google Sheets](#google-sheets)
+  - [Technologies and Libraries Used](#technologies-and-libraries-used)
+  - [Testing](#testing)
+    - [PEP8 Validation](#pep8-validation)
+    - [Lighthouse Testing](#lighthouse-testing)
+  - [Bugs](#bugs)
+  - [Deployment](#deployment)
+    - [Heroku](#heroku)
+  - [Credits](#credits)
+    - [Content](#content)
+  - [Acknowledgements](#acknowledgements)
+
+<!-- /TOC -->
 ## Introduction  
 
-Cycle Changes Tracker is a Command Line Interface programme developed to help women track changes to their cycle upon changing or stopping their method of birth control.  
+Cycle Changes Tracker is a Command Line Interface programme developed to help women track their symptoms in order to monitor changes to their cycle upon changing or stopping their method of birth control.  
 
 This programme runs in a Command Line Interface and has been developed with Python.
 
@@ -19,7 +60,7 @@ This programme runs in a Command Line Interface and has been developed with Pyth
 
 The target audience for this programme are:
 
-- Women who have changed their method of birth control as a means of finding the best option for them in terms of pain management.
+- Women who have changed or stopped their method of birth control as a means of finding the best option for them in terms of pain management.
 
 - Women who are starting birth control and want to keep track of their symptoms to see if the method is suited to them or whether they need to look at other options.  
 
@@ -33,7 +74,7 @@ Below are some scenarios a user may find themselves in which would using the Cyc
   
 - *I am experimenting stopping my birth control for a period of time as suggested by my Gynaecologist. She has advised me to monitor any changes to my menstrual flow and pain experienced to feed back to her after 3 months.*  
   
-- *I am starting birth control and want to keep track of my symptoms so, if required to change in the future, I can find the method that works best for me.*  
+- *I am starting birth control as a means of pain management and need to track my symptoms so, if required to change in the future, I can find the method that works best for me.*  
 
 #### First Time User
 
@@ -135,9 +176,9 @@ The data from both sequences of questions are then sent to the worksheet.
 
 From the dashboard, the user is provided with the option to view the symptoms they have logged to date.
 
-![View-data-info](./assets/README%20screenshots/view-data-1.png)
+![View-data-gif](https://media.giphy.com/media/2JJGvHj15yVDah8UGt/giphy.gif)
 
-![View-data-table](./assets/README%20screenshots/view-data-2.png)
+![View-data-gif2](https://media.giphy.com/media/KCW9tjzBch33Ofy009/giphy.gif)
 
 At the moment and for the purpose of this project, as long as you are registered and logged in with any valid details, the data viewed is all the same as it is linked via API to the two worksheets, so of course the data isn't personalised! In future development the data would be unique to each user.
 
