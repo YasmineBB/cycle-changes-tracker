@@ -20,7 +20,7 @@ This programme runs in a Command Line Interface and has been developed with Pyth
 The target audience for this programme are:
 
 - Women who have changed their method of birth control as a means of finding the best option for them in terms of pain management.
-  
+
 - Women who are starting birth control and want to keep track of their symptoms to see if the method is suited to them or whether they need to look at other options.  
 
 Once the change has been made, it is important to monitor and track changes in their symptoms during their cycle following the change in order to feedback to their GP or Gynaecologist, analyse the data and figure out the next point of action.
@@ -118,7 +118,7 @@ The data from both sequences of questions are then sent to the worksheet.
 
 #### View Your Symptoms  
 
-From the dashboard, the user is provided with the option to view the symptoms they have logged to date. 
+From the dashboard, the user is provided with the option to view the symptoms they have logged to date. At the moment and for the purpose of this project, as long as you are registered and logged in with any valid details, the data viewed is all the same as it is linked via API to the two worksheets, so of course the data isn't personalised! In future development the data would be unique to each user.
 
 ### Future Features to Implement  
 
@@ -134,7 +134,7 @@ I would also an option for the user to add any notes along the way regarding the
 
 #### Security of Data
 
-For the purpose of this project, there isn't a high level of security in terms of securing user data. For example when the user enters their password at the register and login stages, 
+For the purpose of this project, there isn't a high level of security in terms of securing user data. For example when the user enters their password at the register and login stages, it can be seen on the screen.
 
 ## Technologies and Libraries Used  
 
@@ -182,4 +182,4 @@ To deploy to Heroku, the following steps are to be followed:
 
 - I used this article from [101 Computing](https://www.101computing.net/python-typing-text-effect/) to implement a typing effect on print and input statements as I believe it provided a nice flow to the programme.  
   
-- Huge thank you for the help and support from my amazing mentor Richard Wells as well as tutor support who provided a lot of assistance throughout building this project when I got stuck!
+- Huge thank you for the help and support from my amazing mentor Richard Wells as well as tutor support who provided a lot of assistance throughout building this project when I got stuck!  
