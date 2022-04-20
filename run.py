@@ -291,10 +291,7 @@ def login_menu(user):
             typingPrint('\nTaking you to log your symptoms...\n\n')
             return cycle_phase()
         elif login_menu_option == '3':
-            typingPrint("\nHope to see you back soon, " +
-                        Fore.LIGHTMAGENTA_EX +
-                        f"{user.capitalize()}!\n\n" +
-                        Fore.RESET)
+            typingPrint("\nHope to see you back soon!\n\n")
             typingPrint('Logging out...\n\n\n')
             time.sleep(1)
             return menu()
@@ -595,9 +592,8 @@ def get_data(username):
                    tablefmt="grid",
                    stralign='center'))
 
-    typingPrint("\nIt's great that you're logging your symptoms " +
-                Fore.LIGHTMAGENTA_EX + f"{username.capitalize()}" +
-                Fore.RESET + "! Its important to" +
+    typingPrint("\nIt's great that you're logging your symptoms" +
+                "! It's important to" +
                 " track\nany changes and is a great step" +
                 " towards finding what works best for you.\n\n" +
                 "You can use this data when discussing your" +
