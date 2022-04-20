@@ -275,6 +275,8 @@ Accessibility scores high at 97/100 and apart from the Heroku *Run Program* butt
 
 Bugs and errors encountered during development were solved through using print statements and testing along the way at every stage!
 
+I faced a last minute problem using f strings with the username in my get_data function! The error code "AttributeError: 'dict' object has no attribute 'capitalize'" was thrown. It was working fine, and I'm not 100% sure what went wrong after trying to fix it as it was during my last review of the code before submission! After spending time trying to solve it I decided to remove the f strings in this function which contained the users name in the final message when the user views the data when navigating there from the dashboard after registering, and when they logged out from that section. The error didn't occur when the user had navigated their after they had logged in. I will try and figure this out in the future, but unfortunately I had to remove this personalised feature in that section.
+
 Some other fixed bugs include:
 
 - I had some issues after continuing an else statement in one of my while loops. It ran an infinite loop of the else print statement, but this was solved.
